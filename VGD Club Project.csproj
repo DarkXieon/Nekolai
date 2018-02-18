@@ -312,15 +312,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\CameraFollow.cs" />
     <Compile Include="Assets\Contracts\ICanJump.cs" />
     <Compile Include="Assets\Contracts\IMoveable.cs" />
     <Compile Include="Assets\Contracts\MoveDirection.cs" />
+    <Compile Include="Assets\Controls\AIMovement.cs" />
     <Compile Include="Assets\Controls\CharacterMovement.cs" />
-    <Compile Include="Assets\Controls\EntityMovement.cs" />
-    <Compile Include="Assets\Controls\Jump.cs" />
     <Compile Include="Assets\Controls\MoveableObject.cs" />
-    <Compile Include="Assets\Controls\MoveablePlatform.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

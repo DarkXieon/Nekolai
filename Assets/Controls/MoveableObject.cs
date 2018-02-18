@@ -5,7 +5,7 @@ using Assets.Contracts;
 [RequireComponent(typeof(Rigidbody2D))]
 public abstract class MoveableObject : MonoBehaviour, IMoveable
 {
-    // IMoveable property--but properties can't be serialized and therefore can't be edited in the editor
+    // IMoveable property--but properties can't be serialized in unity and therefore can't be edited in the editor
     public float Speed
     {
         get { return _speed; }
@@ -40,7 +40,7 @@ public abstract class MoveableObject : MonoBehaviour, IMoveable
         _moveInput = Vector2.zero;
 
         //Get the amount to move the object by
-        _moveInput = GetMovementDirection();
+        _moveInput = GetMovement();
     }
 
     private void FixedUpdate()
@@ -57,5 +57,5 @@ public abstract class MoveableObject : MonoBehaviour, IMoveable
     }
 
     //This will be implemented by child classes and will return what direction if any, they will move in
-    protected abstract Vector2 GetMovementDirection();
+    protected abstract Vector2 GetMovement();
 }
