@@ -193,9 +193,6 @@
     <Reference Include="UnityEngine.WindModule">
       <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.WindModule.dll</HintPath>
     </Reference>
-    <Reference Include="Facebook.Unity.Settings">
-      <HintPath>Library/FacebookSDK/Facebook.Unity.Settings.dll</HintPath>
-    </Reference>
     <Reference Include="Vuforia.UnityExtensions.Editor">
       <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/VuforiaSupport/Managed/Editor/Vuforia.UnityExtensions.Editor.dll</HintPath>
     </Reference>
@@ -312,12 +309,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Contracts\ICanJump.cs" />
     <Compile Include="Assets\Contracts\IMoveable.cs" />
-    <Compile Include="Assets\Contracts\MoveDirection.cs" />
     <Compile Include="Assets\Controls\AIMovement.cs" />
     <Compile Include="Assets\Controls\CharacterMovement.cs" />
     <Compile Include="Assets\Controls\MoveableObject.cs" />
+    <Compile Include="Assets\Gun_Assets\Gun_Melee_Scripts\GunShotScript.cs" />
+    <Compile Include="Assets\Gun_Assets\Gun_Melee_Scripts\MeleeScript.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

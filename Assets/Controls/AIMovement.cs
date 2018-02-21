@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using Assets.Contracts;
 
 public class AIMovement : MoveableObject
 {

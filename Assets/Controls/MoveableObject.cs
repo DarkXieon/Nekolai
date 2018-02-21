@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using Assets.Contracts;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public abstract class MoveableObject : MonoBehaviour, IMoveable
