@@ -313,8 +313,14 @@
     <Compile Include="Assets\Controls\AIMovement.cs" />
     <Compile Include="Assets\Controls\CharacterMovement.cs" />
     <Compile Include="Assets\Controls\MoveableObject.cs" />
-    <Compile Include="Assets\Gun_Assets\Gun_Melee_Scripts\GunShotScript.cs" />
-    <Compile Include="Assets\Gun_Assets\Gun_Melee_Scripts\MeleeScript.cs" />
+    <Compile Include="Assets\Gun_Resources\Gun_Scripts\BulletScript.cs" />
+    <Compile Include="Assets\Gun_Resources\Gun_Scripts\GunScript.cs" />
+    <Compile Include="Assets\Gun_Resources\Gun_Scripts\IWeapons.cs" />
+    <Compile Include="Assets\Gun_Resources\Gun_Scripts\MeleeScript.cs" />
+    <Compile Include="Assets\Scripts\MainMenu.cs" />
+    <Compile Include="Assets\Scripts\MainMenuMouseHover.cs" />
+    <Compile Include="Assets\Scripts\UIManager.cs" />
+    <Compile Include="Assets\test_onclick.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
