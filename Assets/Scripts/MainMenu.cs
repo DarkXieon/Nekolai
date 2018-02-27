@@ -13,11 +13,21 @@ public class MainMenu : MonoBehaviour {
     void OnMouseUp() {
         if (isNewGame) 
         {
+            // Update the audio
+            MasterAudioSource.mas.StopAllAudio();
+            MasterAudioSource.mas.transform.Find("Level_1").GetComponent<AudioSource>().Play();
+
+            // Change the scene -- Comment left by: Kermit
             SceneManager.LoadScene(1);
             GetComponent<Renderer>().material.color = Color.cyan;
         }
         if (isContinue)
-        {
+        { 
+            // Update the audio
+            MasterAudioSource.mas.StopAllAudio();
+            MasterAudioSource.mas.transform.Find("Level_1").GetComponent<AudioSource>().Play();
+
+            // Change the scene -- Comment left by: Kermit
             SceneManager.LoadScene(1);
             GetComponent<Renderer>().material.color = Color.cyan;
         }
