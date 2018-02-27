@@ -2,6 +2,7 @@
 using System.Collections;
 
 [RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Stat_Speed))]
 public abstract class MoveableObject : MonoBehaviour, IMoveable
 {
     // IMoveable property--but properties can't be serialized in unity and therefore can't be edited in the editor
@@ -10,6 +11,7 @@ public abstract class MoveableObject : MonoBehaviour, IMoveable
         get { return _speed; }
         set { _speed = value; }
     }
+    // ^^ Use the Speed_Stat instead -- left by: Kermit
 
     //To store the movement of the object before we use it
     protected Vector2 _moveInput;
@@ -52,7 +54,8 @@ public abstract class MoveableObject : MonoBehaviour, IMoveable
     public void Move()
     {
         //move the RigidBody based on the speed of the fixed update ticks and the input of the controller
-        _body.MovePosition(_body.position + _moveInput * Speed * Time.fixedDeltaTime);
+        //_body.MovePosition(_body.position + _moveInput * Speed * Time.fixedDeltaTime); -- commented out by: Kermit <-- Use the Speed_Stat
+        _body.MovePosition(_body.position + _moveInput * this.GetComponent<Stat_Speed>().GetCurrentValue() * Time.fixedDeltaTime);
     }
 
     //This will be implemented by child classes and will return what direction if any, they will move in

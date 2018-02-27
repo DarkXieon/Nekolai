@@ -22,6 +22,8 @@ public class UIManager : MonoBehaviour {
         //uses the p button to pause and unpause the game
         if (Input.GetKeyDown(KeyCode.P))
         {
+            pauseControl(); // How come you're not using this function instead? Left by: Kermit
+            /*
             if (Time.timeScale == 1)
             {
                 Time.timeScale = 0;
@@ -32,7 +34,7 @@ public class UIManager : MonoBehaviour {
                 Debug.Log("high");
                 Time.timeScale = 1;
                 hidePaused();
-            }
+            }*/
         }
     }
 
@@ -40,6 +42,15 @@ public class UIManager : MonoBehaviour {
     //Reloads the Level - Restart Button
     public void Reload() 
     {
+        MasterAudioSource.mas.StopAllAudio(); // ALWAYS stop all audio before changing scenes
+
+        // Play the appropiate audio depeneding on the scene name
+
+        if(SceneManager.GetActiveScene().name == "Level 1")
+        {
+            MasterAudioSource.mas.transform.Find("Level_1").GetComponent<AudioSource>().Play();
+        }
+
         Application.LoadLevel(Application.loadedLevel);
     }
 
@@ -48,13 +59,19 @@ public class UIManager : MonoBehaviour {
     {
         if (Time.timeScale == 1)
         {
+            // Pauses the game -- Comment left by: Kermit
+            MasterAudioSource.mas.PauseAllAudio();
             Time.timeScale = 0;
             showPaused();
+            
         }
         else if (Time.timeScale == 0)
         {
+            // Unpauses the game -- Comment left by: Kermit
             Time.timeScale = 1;
             hidePaused();
+            MasterAudioSource.mas.UnPauseAllAudio();
+
         }
     }
 
@@ -79,6 +96,7 @@ public class UIManager : MonoBehaviour {
     //loads inputed level - Main Menu button
     public void LoadLevel(string level)
     {
+        MasterAudioSource.mas.StopAllAudio();
         SceneManager.LoadScene(0);
         //Application.LoadLevel(level);
     }
