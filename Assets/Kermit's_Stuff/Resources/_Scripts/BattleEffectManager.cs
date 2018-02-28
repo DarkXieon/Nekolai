@@ -5,7 +5,7 @@ using UnityEngine;
 public class BattleEffectManager : MonoBehaviour
 {
     // Declare the variables
-
+    
     public List<BattleEffect> activeEffects; // the list of BattleEffects currently affecting this object
     public List<BattleEffect> removedEffects; // the list of BattleEffects no longer affecting this object
 
@@ -14,7 +14,7 @@ public class BattleEffectManager : MonoBehaviour
     public void AddStatModifier(string statName, string modifierType, float amount)
     {
         // Figure out the stat to change, then the modifier type, and then call the add modifier methods with the amount as the argument
-
+        
         if(statName == "Speed")
         {
             if(modifierType == "PreMult")

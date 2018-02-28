@@ -309,14 +309,28 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Contracts\IJump.cs" />
     <Compile Include="Assets\Contracts\IMoveable.cs" />
     <Compile Include="Assets\Controls\AIMovement.cs" />
     <Compile Include="Assets\Controls\CharacterMovement.cs" />
+    <Compile Include="Assets\Controls\EntityJump.cs" />
     <Compile Include="Assets\Controls\MoveableObject.cs" />
     <Compile Include="Assets\Gun_Resources\Gun_Scripts\BulletScript.cs" />
+    <Compile Include="Assets\Gun_Resources\Gun_Scripts\DestroyBullet.cs" />
     <Compile Include="Assets\Gun_Resources\Gun_Scripts\GunScript.cs" />
+    <Compile Include="Assets\Gun_Resources\Gun_Scripts\GunShotAlternateScript.cs" />
+    <Compile Include="Assets\Gun_Resources\Gun_Scripts\GunShotScript.cs" />
     <Compile Include="Assets\Gun_Resources\Gun_Scripts\IWeapons.cs" />
     <Compile Include="Assets\Gun_Resources\Gun_Scripts\MeleeScript.cs" />
+    <Compile Include="Assets\Gun_Resources\Gun_Scripts\PointGun.cs" />
+    <Compile Include="Assets\Kermit&apos;s_Stuff\Resources\_Scripts\BattleEffect.cs" />
+    <Compile Include="Assets\Kermit&apos;s_Stuff\Resources\_Scripts\BattleEffectManager.cs" />
+    <Compile Include="Assets\Kermit&apos;s_Stuff\Resources\_Scripts\MasterAudioSource.cs" />
+    <Compile Include="Assets\Kermit&apos;s_Stuff\Resources\_Scripts\PowerUpLogic.cs" />
+    <Compile Include="Assets\Kermit&apos;s_Stuff\Resources\_Scripts\Stat.cs" />
+    <Compile Include="Assets\Kermit&apos;s_Stuff\Resources\_Scripts\Stat_Power.cs" />
+    <Compile Include="Assets\Kermit&apos;s_Stuff\Resources\_Scripts\Stat_Speed.cs" />
+    <Compile Include="Assets\Kermit&apos;s_Stuff\Resources\_Scripts\Timer.cs" />
     <Compile Include="Assets\Scripts\MainMenu.cs" />
     <Compile Include="Assets\Scripts\MainMenuMouseHover.cs" />
     <Compile Include="Assets\Scripts\UIManager.cs" />
