@@ -1,17 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System;
 using UnityEngine.Events;
 
 public class EventManager : MonoBehaviour
 {
-    public delegate void TestEventMethod();
-
-    //public event TestEventMethod TestEvent { add { TestEvent += value; } remove; }
-
-    
-
     public static EventManager Instance
     {
         get
@@ -32,19 +27,27 @@ public class EventManager : MonoBehaviour
 
     private static EventManager _eventManager;
 
-    private Dictionary<EventType, UnityEvent> _eventListeners;
+    private IDictionary<EventType, UnityEvent> _events;
 
     // Use this for initialization
-    void Awake()
+    private void Awake()
     {
-        _eventListeners = new Dictionary<EventType, UnityEvent>();
-
-        new List<EventType>(Enum.GetValues(typeof(EventType)) as EventType[])
-            .ForEach(eventType => _eventListeners.Add(eventType, new UnityEvent()));
+        _events = ((EventType[])Enum.GetValues(typeof(EventType)))
+            .ToDictionary(eventType => eventType, eventType => new UnityEvent());
     }
 
-    public static void AddListener(EventType type, UnityAction action)
+    public void AddListener(EventType type, UnityAction action)
     {
-        //_eventManager._eventListeners.Add(EventType.PLAYER_TURNS, new GenericUnityEvent<EntityJump>());
+        _events[type].AddListener(action);
+    }
+
+    public void RemoveListener(EventType type, UnityAction action)
+    {
+        _events[type].RemoveListener(action);
+    }
+
+    public void ExecuteEvent(EventType type)
+    {
+        _events[type].Invoke();
     }
 }
