@@ -13,7 +13,7 @@ public class GunShotAlternateScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("space"))
+        if (Input.GetMouseButtonDown(0))
         {
             Rigidbody2D bullet = Instantiate(BulletPrefab, BarrelEnd.position, transform.rotation);
 

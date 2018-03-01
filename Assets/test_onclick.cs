@@ -7,7 +7,7 @@ public class test_onclick : MonoBehaviour {
     public Button btn;
 	// Use this for initialization
 	void Start () {
-        this.gameObject.GetComponent<Button>().onClick.AddListener(TaskOnClick);
+        //this.gameObject.GetComponent<Button>().onClick.AddListener(TaskOnClick);
     }
 	
 	// Update is called once per frame

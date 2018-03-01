@@ -39,7 +39,7 @@ public class GunShotScript : MonoBehaviour {
 	{
 		OldPosition = positionOfParent.transform.position.x;
 
-		if (Input.GetKeyDown("space") && !shooting)
+		if (Input.GetMouseButtonDown(0) && !shooting)
 		{
 			// Set shooting to true
 			shooting = true;

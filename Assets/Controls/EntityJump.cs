@@ -31,7 +31,7 @@ public class EntityJump : MonoBehaviour, IJump
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Jump") && (!this.InAir || !this.UsedSecondJump))
+        if (Input.GetKeyDown("w") && (!this.InAir || !this.UsedSecondJump))
         {
             Jump();
         }

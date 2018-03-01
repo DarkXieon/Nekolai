@@ -3,5 +3,5 @@ using UnityEditor;
 
 public enum EventType
 {
-    PLAYER_TURNS
+    PLAYER_INTERACTED
 }
