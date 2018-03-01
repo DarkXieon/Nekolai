@@ -6,6 +6,10 @@ TagManager:
   tags:
   - ShowOnPause
   - Enemy
+<<<<<<< HEAD
+=======
+  - interObject
+>>>>>>> TimBranch
   layers:
   - Default
   - TransparentFX
