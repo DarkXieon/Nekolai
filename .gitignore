@@ -39,6 +39,7 @@ obj/
 *.user
 *.unityproj
 *.booproj
+.vs/
  
 # ============ #
 # OS generated #
