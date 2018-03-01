@@ -3,13 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - ShowOnPause
-  - Enemy
-<<<<<<< HEAD
-=======
-  - interObject
->>>>>>> TimBranch
+  tags: []
   layers:
   - Default
   - TransparentFX

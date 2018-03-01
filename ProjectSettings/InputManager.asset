@@ -42,11 +42,7 @@ InputManager:
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-<<<<<<< HEAD
-    positiveButton: 
-=======
     positiveButton: left ctrl
->>>>>>> TimBranch
     altNegativeButton: 
     altPositiveButton: mouse 0
     gravity: 1000
@@ -74,19 +70,11 @@ InputManager:
     axis: 0
     joyNum: 0
   - serializedVersion: 3
-<<<<<<< HEAD
     m_Name: Fire3
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
     positiveButton: left shift
-=======
-    m_Name: Interact
-    descriptiveName: 
-    descriptiveNegativeName: 
-    negativeButton: 
-    positiveButton: e
->>>>>>> TimBranch
     altNegativeButton: 
     altPositiveButton: mouse 2
     gravity: 1000
@@ -102,11 +90,7 @@ InputManager:
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-<<<<<<< HEAD
-    positiveButton: w
-=======
     positiveButton: space
->>>>>>> TimBranch
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
