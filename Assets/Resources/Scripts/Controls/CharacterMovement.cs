@@ -8,10 +8,10 @@ namespace Assets.Controls
 {
     public class CharacterMovement : MoveableObject
     {
-        protected override Vector2 GetMovement()
+        protected override float GetMovement()
         {
             //return the Horisontal move axis as a Vector2
-            return new Vector2(Input.GetAxis("Horizontal"), 0f);
+            return Input.GetAxis("Horizontal");
         }
     }
 }

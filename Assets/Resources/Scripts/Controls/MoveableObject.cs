@@ -6,29 +6,27 @@ using System.Collections;
 public abstract class MoveableObject : MonoBehaviour, IMoveable
 {
     // IMoveable property--but properties can't be serialized in unity and therefore can't be edited in the editor
-    public float Speed
-    {
-        get { return _speed; }
-        set { _speed = value; }
-    }
+    
     // ^^ Use the Speed_Stat instead -- left by: Kermit
 
     //To store the movement of the object before we use it
-    protected Vector2 _moveInput;
+    protected float _moveInput;
 
-    [SerializeField] // We want to be able to edit this in the Unity editor
-    private float _speed;
+    protected float _previousMoveInput;
 
     //The GameObject's Rigidbody
-    private Rigidbody2D _body;
+    protected Rigidbody2D _body;
+
+    private bool _moving;
 
     // Use this for initialization
     private void Start()
     {
-        // In case we forget to set it in the unity editor
-        Speed = 5f;
-        
-        _moveInput = Vector2.zero;
+        _moving = false;
+
+        _moveInput = 0f;
+
+        _previousMoveInput = 0f;
 
         //Every GameObject the uses this component will have a RigidBody
         _body = GetComponent<Rigidbody2D>();
@@ -38,10 +36,27 @@ public abstract class MoveableObject : MonoBehaviour, IMoveable
     private void Update()
     {
         //reset the movement from the last input
-        _moveInput = Vector2.zero;
+        //_moveInput = Vector2.zero;
 
         //Get the amount to move the object by
-        _moveInput = GetMovement();
+        _body.velocity = new Vector2(Mathf.Max(0, _body.velocity.x - _moveInput), _body.velocity.y);
+
+        _moveInput = _body.velocity.x + GetMovement() * this.GetComponent<Stat_Speed>().GetCurrentValue();// * Time.fixedDeltaTime;
+
+        if (_moveInput != 0f)
+        {
+            _moving = true;
+            
+            EventManager.Instance.ExecuteObjectSpecificEvent(EventType.WALK, this.gameObject);
+        }
+        else if(_moving)
+        {
+            _moving = false;
+            
+            EventManager.Instance.ExecuteObjectSpecificEvent(EventType.NO_MOVEMENT, this.gameObject);
+        }
+
+        _previousMoveInput = _moveInput;
     }
 
     private void FixedUpdate()
@@ -55,9 +70,14 @@ public abstract class MoveableObject : MonoBehaviour, IMoveable
     {
         //move the RigidBody based on the speed of the fixed update ticks and the input of the controller
         //_body.MovePosition(_body.position + _moveInput * Speed * Time.fixedDeltaTime); -- commented out by: Kermit <-- Use the Speed_Stat
-        _body.MovePosition(_body.position + _moveInput * this.GetComponent<Stat_Speed>().GetCurrentValue() * Time.fixedDeltaTime);
+
+        _body.velocity = new Vector2(_moveInput, _body.velocity.y);
+
+        //_body.AddForce(new Vector2(_moveInput.x * this.GetComponent<Stat_Speed>().GetCurrentValue() * Time.fixedDeltaTime, 0f));
+
+        //_body.MovePosition(_body.position + _moveInput * this.GetComponent<Stat_Speed>().GetCurrentValue() * Time.fixedDeltaTime);
     }
 
     //This will be implemented by child classes and will return what direction if any, they will move in
-    protected abstract Vector2 GetMovement();
+    protected abstract float GetMovement();
 }
