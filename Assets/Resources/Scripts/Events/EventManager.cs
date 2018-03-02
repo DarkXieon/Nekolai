@@ -34,10 +34,6 @@ public class EventManager : MonoBehaviour
     // Use this for initialization
     private void Awake()
     {
-        //Debug.Log("called");
-
-        //_eventManager = this.GetComponent<EventManager>();
-        
         _defaultEventObject = new GameObject();
 
         _events = ((EventType[])Enum.GetValues(typeof(EventType)))
@@ -99,7 +95,7 @@ public class EventManager : MonoBehaviour
         }
         else
         {
-            Debug.LogError("No key found for event invoke");
+            //Debug.LogError(string.Format("No key found for event invoke on gameobject named: {0}", specificListener.name));
         }
     }
 }

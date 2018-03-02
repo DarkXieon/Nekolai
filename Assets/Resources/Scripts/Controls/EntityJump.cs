@@ -65,7 +65,7 @@ public class EntityJump : MonoBehaviour, IJump
             this.InAir = true;
 
             _jumper.AddRelativeForce(force);
-
+            
             EventManager.Instance.ExecuteObjectSpecificEvent(EventType.JUMP, this.gameObject);
         }
         else if (this.InAir && !this.UsedSecondJump)
@@ -73,7 +73,7 @@ public class EntityJump : MonoBehaviour, IJump
             this.UsedSecondJump = true;
             
             _jumper.AddRelativeForce(new Vector2(0, force.y));
-
+            
             EventManager.Instance.ExecuteObjectSpecificEvent(EventType.JUMP, this.gameObject);
         }
     }
