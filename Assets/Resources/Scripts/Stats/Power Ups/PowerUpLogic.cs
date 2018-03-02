@@ -67,6 +67,11 @@ public class PowerUpLogic : MonoBehaviour
 
                 
             }
+
+
+            // Prevent the PowerUp from stacking and make it disappears
+
+            Destroy(this.gameObject);
         }
         else
         {
@@ -75,12 +80,6 @@ public class PowerUpLogic : MonoBehaviour
 
         
 
-        // Prevent the PowerUp from stacking and make the illusion it's been consumed by disabling rigidbody and sprite renderer
-      //  this.GetComponent<SpriteRenderer>().enabled = false;
-      //  this.GetComponent<BoxCollider2D>().enabled = false;
-       // Destroy(this.GetComponent<Rigidbody2D>());
-
-        //this.gameObject.SetActive(false);
-        Destroy(this.gameObject);
+        
     }
 }
