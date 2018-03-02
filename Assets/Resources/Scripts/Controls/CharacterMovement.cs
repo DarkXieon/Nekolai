@@ -10,8 +10,16 @@ namespace Assets.Controls
     {
         protected override float GetMovement()
         {
-            //return the Horisontal move axis as a Vector2
-            return Input.GetAxis("Horizontal");
+            if(Input.GetKeyDown("d") || Input.GetKey("d"))
+            {
+                return _speedStat.GetCurrentValue();
+            }
+            else if(Input.GetKeyDown("a") || Input.GetKey("a"))
+            {
+                return _speedStat.GetCurrentValue() * -1;
+            }
+
+            return 0;
         }
     }
 }
