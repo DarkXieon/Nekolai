@@ -4,7 +4,7 @@ using System.Collections;
 public class AIMovement : MoveableObject
 {
     //The AI logic would go here
-    protected override Vector2 GetMovement()
+    protected override float GetMovement()
     {
         throw new System.NotImplementedException();
     }
