@@ -59,6 +59,7 @@ GameObject:
   - component: {fileID: 23957850182367942}
   - component: {fileID: 50841969752680970}
   - component: {fileID: 61729044499467054}
+  - component: {fileID: 114891546334871824}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -505,3 +506,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapon: {fileID: 4025568974138318}
   hand: {fileID: 4384508050983832}
+--- !u!114 &114891546334871824
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1095866590058508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7a43c631e3b99e4785755b711b4b933, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseValue: 1
+  preMultModifiers: 1
+  postMultModifiers: 1
+  additiveModifiers: 0
+  currentValue: 0
