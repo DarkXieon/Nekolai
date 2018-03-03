@@ -3,5 +3,12 @@ using UnityEditor;
 
 public enum EventType
 {
-    PLAYER_INTERACTED
+    INTERACT,
+    JUMP,
+    LAND,
+    SPRINT,
+    WALK,
+    NO_MOVEMENT,
+    TURN_RIGHT,
+    TURN_LEFT
 }

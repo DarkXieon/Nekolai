@@ -1,34 +1,37 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Stat_Speed))]
 public abstract class MoveableObject : MonoBehaviour, IMoveable
 {
     // IMoveable property--but properties can't be serialized in unity and therefore can't be edited in the editor
-    public float Speed
-    {
-        get { return _speed; }
-        set { _speed = value; }
-    }
+    
     // ^^ Use the Speed_Stat instead -- left by: Kermit
 
     //To store the movement of the object before we use it
-    protected Vector2 _moveInput;
+    protected float _moveInput;
 
-    [SerializeField] // We want to be able to edit this in the Unity editor
-    private float _speed;
+    protected float _previousMoveInput;
 
     //The GameObject's Rigidbody
-    private Rigidbody2D _body;
+    protected Rigidbody2D _body;
 
+    protected Stat_Speed _speedStat;
+
+    private bool _lastMovementWasPositive;
+    
     // Use this for initialization
     private void Start()
     {
-        // In case we forget to set it in the unity editor
-        Speed = 5f;
+        _speedStat = this.GetComponent(typeof(Stat_Speed)) as Stat_Speed;
+
+        _lastMovementWasPositive = false;
         
-        _moveInput = Vector2.zero;
+        _moveInput = 0f;
+
+        _previousMoveInput = 0f;
 
         //Every GameObject the uses this component will have a RigidBody
         _body = GetComponent<Rigidbody2D>();
@@ -37,11 +40,60 @@ public abstract class MoveableObject : MonoBehaviour, IMoveable
     // Update is called once per frame
     private void Update()
     {
+        var movementAmount = GetMovement();
+        
+        if(movementAmount != 0)
+        {
+            var movementIsPositive = movementAmount > 0;
+            var changedDirectionLeftToRight = movementIsPositive && !_lastMovementWasPositive;
+            var changedDirectionRightToLeft = !movementIsPositive && _lastMovementWasPositive;
+
+            if (changedDirectionLeftToRight)
+            {
+                EventManager.Instance.ExecuteObjectSpecificEvent(EventType.TURN_RIGHT, this.gameObject);
+            }
+            else if (changedDirectionRightToLeft)
+            {
+                EventManager.Instance.ExecuteObjectSpecificEvent(EventType.TURN_LEFT, this.gameObject);
+            }
+
+            EventManager.Instance.ExecuteObjectSpecificEvent(EventType.WALK, this.gameObject);
+
+            _lastMovementWasPositive = movementIsPositive;
+        }
+
+        _moveInput = movementAmount;
+        
+        /*
         //reset the movement from the last input
-        _moveInput = Vector2.zero;
+        //_moveInput = Vector2.zero;
 
         //Get the amount to move the object by
-        _moveInput = GetMovement();
+        var axis = GetMovement();
+        
+        _body.velocity = new Vector2(Mathf.Max(0, _body.velocity.x - _moveInput), _body.velocity.y);
+
+        _moveInput = (float)Math.Round(_body.velocity.x + axis * this.GetComponent<Stat_Speed>().GetCurrentValue(), 3);// * Time.fixedDeltaTime;
+
+        var yVeclocity = (float)Math.Round(_body.velocity.y, 3);
+
+        Debug.Log(axis);
+
+        if (_moveInput != 0f)
+        {
+            _moving = true;
+
+            EventManager.Instance.ExecuteObjectSpecificEvent(EventType.WALK, this.gameObject);
+        }
+        else if (_moveInput == 0f)*//* && yVeclocity == 0f)*//*
+        {
+            _moving = false;
+            
+            EventManager.Instance.ExecuteObjectSpecificEvent(EventType.NO_MOVEMENT, this.gameObject);
+        }
+
+        _previousMoveInput = _moveInput; 
+        */
     }
 
     private void FixedUpdate()
@@ -53,11 +105,9 @@ public abstract class MoveableObject : MonoBehaviour, IMoveable
      * _moveInput and a speed defined by _speed */
     public void Move()
     {
-        //move the RigidBody based on the speed of the fixed update ticks and the input of the controller
-        //_body.MovePosition(_body.position + _moveInput * Speed * Time.fixedDeltaTime); -- commented out by: Kermit <-- Use the Speed_Stat
-        _body.MovePosition(_body.position + _moveInput * this.GetComponent<Stat_Speed>().GetCurrentValue() * Time.fixedDeltaTime);
+        _body.velocity = new Vector2(_moveInput, _body.velocity.y);
     }
 
     //This will be implemented by child classes and will return what direction if any, they will move in
-    protected abstract Vector2 GetMovement();
+    protected abstract float GetMovement();
 }

@@ -8,10 +8,18 @@ namespace Assets.Controls
 {
     public class CharacterMovement : MoveableObject
     {
-        protected override Vector2 GetMovement()
+        protected override float GetMovement()
         {
-            //return the Horisontal move axis as a Vector2
-            return new Vector2(Input.GetAxis("Horizontal"), 0f);
+            if(Input.GetKeyDown("d") || Input.GetKey("d"))
+            {
+                return _speedStat.GetCurrentValue();
+            }
+            else if(Input.GetKeyDown("a") || Input.GetKey("a"))
+            {
+                return _speedStat.GetCurrentValue() * -1;
+            }
+
+            return 0;
         }
     }
 }

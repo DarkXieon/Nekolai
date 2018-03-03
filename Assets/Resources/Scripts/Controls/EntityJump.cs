@@ -43,6 +43,8 @@ public class EntityJump : MonoBehaviour, IJump
 
         if(colliderPosition.y <= _jumperTransform.position.y + 1)
         {
+            EventManager.Instance.ExecuteObjectSpecificEvent(EventType.LAND, this.gameObject);
+            
             this.InAir = false;
 
             this.UsedSecondJump = false;
@@ -56,19 +58,23 @@ public class EntityJump : MonoBehaviour, IJump
     
     public void Jump()
     {
-        var force = new Vector2(0, 25000);
+        var force = new Vector2(0, 1000);
 
         if (!this.InAir)
         {
             this.InAir = true;
 
             _jumper.AddRelativeForce(force);
+            
+            EventManager.Instance.ExecuteObjectSpecificEvent(EventType.JUMP, this.gameObject);
         }
         else if (this.InAir && !this.UsedSecondJump)
         {
             this.UsedSecondJump = true;
             
             _jumper.AddRelativeForce(new Vector2(0, force.y));
+            
+            EventManager.Instance.ExecuteObjectSpecificEvent(EventType.JUMP, this.gameObject);
         }
     }
 }
