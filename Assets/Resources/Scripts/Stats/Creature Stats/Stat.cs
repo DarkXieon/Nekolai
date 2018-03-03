@@ -7,11 +7,11 @@ public class Stat : MonoBehaviour
     // Declare the variables
 
     /*readonly*/
-    [SerializeField] float baseValue; // the base stat BEFORE applying modifiers, min = 0
-    [SerializeField] float preMultModifiers = 1; // the factor to scale the BASE value; 1 + the sum of all preMultMods as decimals (+30% of base = 0.3)
-    [SerializeField] float postMultModifiers = 1; // the factor to scale the CURRENT value; 1 + the sum of all postMultMods as decimals (+30% overall = 0.3)
-    [SerializeField] float additiveModifiers = 0; // the 0 + sum of all additive modifiers (i.e - "+5 defense" = 5)
-    [SerializeField] float currentValue; // the current value of the stat AFTER modifiers; 
+    [SerializeField] protected float baseValue; // the base stat BEFORE applying modifiers, min = 0
+    [SerializeField] protected float preMultModifiers = 1; // the factor to scale the BASE value; 1 + the sum of all preMultMods as decimals (+30% of base = 0.3)
+    [SerializeField] protected float postMultModifiers = 1; // the factor to scale the CURRENT value; 1 + the sum of all postMultMods as decimals (+30% overall = 0.3)
+    [SerializeField] protected float additiveModifiers = 0; // the 0 + sum of all additive modifiers (i.e - "+5 defense" = 5)
+    [SerializeField] protected float currentValue; // the current value of the stat AFTER modifiers; 
     //currentValue = (((baseValue * (preMultModifiers)) + (additiveModifiers)) * postMultModifiers);
 
     // Start

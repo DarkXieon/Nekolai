@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class GunShotScript : MonoBehaviour {
 
 	// Drag in the Bullet Spawner from the Component Inspector to tell where the bullets will spawn from (tip of the gun)
@@ -24,6 +25,8 @@ public class GunShotScript : MonoBehaviour {
 	private Rigidbody2D positionOfParent;
 	private float OldPosition;
 
+    //private Stat_Power power; // used to determine damage 
+
 
 	//IMPORTANT enemies will need triggers to check if a bullet hit them!!! We can use tags to check if it was a bullet or another enemy
 
@@ -32,6 +35,7 @@ public class GunShotScript : MonoBehaviour {
 	void Start ()
 	{
 		positionOfParent = Bullet_Spawn_Point.GetComponentInParent<Rigidbody2D>();
+       // power = this.GetComponent<Stat_Power>();
 	}
 
 	// Update is called once per frame
@@ -47,6 +51,8 @@ public class GunShotScript : MonoBehaviour {
 			// The Bullet instantiation, to make a copy whenever firing
 			GameObject Bullet_Handler;
 			Bullet_Handler = Instantiate (Bullet, Bullet_Spawn_Point.transform.position, Bullet_Spawn_Point.transform.rotation);
+
+         
 
 			// Sometimes bullets may appear rotated incorrectly due to the way its pivot was set from the original, can be corrected here
 			Bullet_Handler.transform.Rotate(Vector3.forward * 90);
