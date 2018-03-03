@@ -61,6 +61,10 @@ public abstract class MoveableObject : MonoBehaviour, IMoveable
 
             _lastMovementWasPositive = movementIsPositive;
         }
+        else
+        {
+            EventManager.Instance.ExecuteObjectSpecificEvent(EventType.NO_MOVEMENT, this.gameObject);
+        }
 
         _moveInput = movementAmount;
         
