@@ -32,6 +32,10 @@ public class BulletScript : MonoBehaviour
                 if(!owner)
                 {
                     collision.gameObject.GetComponent<Stat_Health>().ChangeHealth(damage * -1);
+                    // Destroy bullets on impact
+
+                    Destroy(this.gameObject);
+
                 }
             }
             else
@@ -39,14 +43,23 @@ public class BulletScript : MonoBehaviour
                 if(owner)
                 {
                     collision.gameObject.GetComponent<Stat_Health>().ChangeHealth(damage * -1);
+                    // Destroy bullets on impact
+
+                    Destroy(this.gameObject);
                 }
             }
             
         }
 
-        // Destroy bullets on impact
+        else
+        {
+            if(collision.gameObject.tag == "Terrain")
+            {
+                // Destroy bullets on impact
 
-        Destroy(this.gameObject);
+                Destroy(this.gameObject);
+            }
+        }
 
 
 	}
