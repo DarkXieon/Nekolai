@@ -18,8 +18,13 @@ public class GunShotAlternateScript : MonoBehaviour
             Rigidbody2D bullet = Instantiate(BulletPrefab, BarrelEnd.position, transform.rotation);
 
             bullet.MoveRotation(90);
+
+            var localScale = this.transform.root.localScale.x;
+            var barrelEnd = BarrelEnd.right;
+            barrelEnd.x *= localScale;
+
+            bullet.AddForce(barrelEnd * BulletForce * Time.deltaTime);
             
-            bullet.AddForce(BarrelEnd.right * BulletForce * Time.deltaTime);
         }
     }
 }
