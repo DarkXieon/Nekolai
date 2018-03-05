@@ -47,7 +47,9 @@ public class Stat_Health : Stat
 
         if (!this.isAlive)
         {
-            Destroy(this.gameObject);
+            //**EDITED BY ANDREW KAUS TO ADD DEATH ANIMATION FUNCTIONALLITY**//
+            EventManager.Instance.ExecuteObjectSpecificEvent(EventType.DEATH, this.gameObject);
+            Destroy(this.gameObject, 3f);
         }
 
     }

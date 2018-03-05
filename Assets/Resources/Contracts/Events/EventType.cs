@@ -10,5 +10,6 @@ public enum EventType
     WALK,
     NO_MOVEMENT,
     TURN_RIGHT,
-    TURN_LEFT
+    TURN_LEFT,
+    DEATH
 }

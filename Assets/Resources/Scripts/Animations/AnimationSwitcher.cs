@@ -16,15 +16,16 @@ public class AnimationSwitcher : MonoBehaviour
     [SerializeField]
     private string _inAirParamName;
 
+    [SerializeField]
+    private string _deathTriggerName;
+
     private Animator _animator;
     
     private UnityAction _jumpAction;
-
     private UnityAction _landAction;
-
     private UnityAction _walkAction;
-
     private UnityAction _noMovementAction;
+    private UnityAction _deathAction;
 
     private void Start()
     {
@@ -52,13 +53,22 @@ public class AnimationSwitcher : MonoBehaviour
 
             _noMovementAction = () => _animator.SetInteger(_stateParamName, 4);
             EventManager.Instance.AddObjectSpecificListener(EventType.NO_MOVEMENT, _noMovementAction, this.gameObject);
+
+            _deathAction = () =>
+            {
+                _animator.SetInteger(_stateParamName, 5);
+                _animator.SetTrigger(_deathTriggerName);
+            };
+            
+            EventManager.Instance.AddObjectSpecificListener(EventType.DEATH, _deathAction, this.gameObject);
         }
     }
-    
+    /*
     private void OnDestroy()
     {
         EventManager.Instance.RemoveObjectSpecificListener(EventType.JUMP, _jumpAction, this.gameObject);
         EventManager.Instance.RemoveObjectSpecificListener(EventType.WALK, _walkAction, this.gameObject);
         EventManager.Instance.RemoveObjectSpecificListener(EventType.NO_MOVEMENT, _noMovementAction, this.gameObject);
     }
+    */
 }
