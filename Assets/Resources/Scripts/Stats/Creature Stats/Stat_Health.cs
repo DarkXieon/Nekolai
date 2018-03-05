@@ -9,8 +9,8 @@ public class Stat_Health : Stat
     [SerializeField] private Text healthText; // the UI text for the health
     public static GameObject prefabCanvas; // the prefab of the health canvas
 
-    // Use this for initialization
-    void Start ()
+	// Use this for initialization
+	private void Start ()
     {
         base.Start();
 
