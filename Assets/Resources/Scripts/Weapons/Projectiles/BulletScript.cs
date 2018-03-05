@@ -9,7 +9,7 @@ public class BulletScript : MonoBehaviour
     // Add this to the bullet prefab in order to check collisions, the bullet is the trigger
     
     // The enemy script will have a takeAwayHealth function or some way to take it away
-    void OnTriggerEnter2D (Collider2D collision)
+    void OnCollisionEnter2D(Collision2D collision)
 	{
         /* Comment out by Kermit -> get their Stat_Health to check
 		if(collision.gameObject.tag == "Enemy")
@@ -22,7 +22,7 @@ public class BulletScript : MonoBehaviour
 			Destroy (gameObject);
 			//}
 		}*/
-
+        Debug.Log("test");
         // Deal damage if possible, but not to the Owner of the source of damage
         if(collision.gameObject.GetComponent<Stat_Health>() != null)
         {
