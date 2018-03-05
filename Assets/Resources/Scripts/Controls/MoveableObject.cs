@@ -21,7 +21,7 @@ public abstract class MoveableObject : MonoBehaviour, IMoveable
     protected Stat_Speed _speedStat;
 
     private bool _lastMovementWasPositive;
-    
+
     // Use this for initialization
     private void Start()
     {
@@ -114,4 +114,22 @@ public abstract class MoveableObject : MonoBehaviour, IMoveable
 
     //This will be implemented by child classes and will return what direction if any, they will move in
     protected abstract float GetMovement();
+    
+    public void OnCollisionStay2D(Collision2D collision)
+    {
+        // We want to carry the force of the moving platform, but the velocity keeps resetting to 0... | TODO
+        if(collision.gameObject.GetComponent<PlatformMover>() != null)
+        {
+            
+
+            Debug.Log("Stop! We'll get 'em next time... | " + Time.time);
+            Debug.Log("Velocity BEFORE: " + this.GetComponent<Rigidbody2D>().velocity);
+            Debug.Log("Direction Vector" + collision.gameObject.GetComponent<PlatformMover>().direction);
+            this.GetComponent<Rigidbody2D>().velocity += collision.gameObject.GetComponent<PlatformMover>().direction;
+            Debug.Log("Velocity AFTER: " + this.GetComponent<Rigidbody2D>().velocity);
+        }
+    }
+
+    
+
 }
