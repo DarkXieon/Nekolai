@@ -9,7 +9,7 @@ public class Stat_Health : Stat
     [SerializeField] private Text healthText; // the UI text for the health
 
 	// Use this for initialization
-	void Start ()
+	private void Start ()
     {
         base.Start();
 	}

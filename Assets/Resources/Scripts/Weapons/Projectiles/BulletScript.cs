@@ -22,7 +22,6 @@ public class BulletScript : MonoBehaviour
 			Destroy (gameObject);
 			//}
 		}*/
-        Debug.Log("test");
         // Deal damage if possible, but not to the Owner of the source of damage
         if(collision.gameObject.GetComponent<Stat_Health>() != null)
         {

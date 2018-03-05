@@ -6,13 +6,13 @@ using UnityEngine;
 public class GunShotScript : MonoBehaviour {
 
 	// Drag in the Bullet Spawner from the Component Inspector to tell where the bullets will spawn from (tip of the gun)
-	public GameObject Bullet_Spawn_Point;
+	public Transform BulletSpawnPoint;
 
 	// Drag in the Bullet Prefab from the Component Inspector
 	public GameObject Bullet;
 
-	// Enter the Speed of the Bullet from the Component Inspector 
-	public float Bullet_Force = .02f;
+	[HideInInspector]
+	public float BulletForce = .02f;
 
 	// Need to know if we are already shooting
 	private bool shooting = false;
@@ -34,7 +34,7 @@ public class GunShotScript : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
 	{
-		positionOfParent = Bullet_Spawn_Point.GetComponentInParent<Rigidbody2D>();
+		positionOfParent = BulletSpawnPoint.GetComponentInParent<Rigidbody2D>();
        // power = this.GetComponent<Stat_Power>();
 	}
 
@@ -50,7 +50,7 @@ public class GunShotScript : MonoBehaviour {
 
 			// The Bullet instantiation, to make a copy whenever firing
 			GameObject Bullet_Handler;
-			Bullet_Handler = Instantiate (Bullet, Bullet_Spawn_Point.transform.position, Bullet_Spawn_Point.transform.rotation);
+			Bullet_Handler = Instantiate (Bullet, BulletSpawnPoint.transform.position, BulletSpawnPoint.transform.rotation);
 
          
 
@@ -65,11 +65,11 @@ public class GunShotScript : MonoBehaviour {
 			if (OldPosition >= positionOfParent.transform.position.x) 
 			{
 				// Tell the bullet to be "pushed" forward by an amount set by Bullet_Forward_Force.
-				RigidBody.AddForce(transform.right * Bullet_Force);
+				RigidBody.AddForce(transform.right * BulletForce);
 			}
 			// Else we have to send it left because we are facing the opposite direction
 			else 
-				RigidBody.AddForce(transform.right * -(Bullet_Force));
+				RigidBody.AddForce(transform.right * -(BulletForce));
 
 			// Set the Bullets to self destruct after 3 Seconds
 			Destroy(Bullet_Handler, 3.0f);

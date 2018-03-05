@@ -7,6 +7,7 @@ TagManager:
   - ShowOnPause
   - Enemy
   - Terrain
+  - Gun Barrel
   layers:
   - Default
   - TransparentFX

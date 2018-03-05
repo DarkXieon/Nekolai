@@ -202,6 +202,27 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dbb15d478c35cde4c86ac434a1feaeb8, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &423186808 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1079180393234912, guid: f865817725a240b4abe44a1ce5d76b98,
+    type: 2}
+  m_PrefabInternal: {fileID: 1424078223}
+--- !u!114 &423186809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 423186808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97769cb1723e6c045b43940e3664c9e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1113076428 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4216447216288634, guid: f865817725a240b4abe44a1ce5d76b98,
+    type: 2}
+  m_PrefabInternal: {fileID: 1424078223}
 --- !u!1001 &1197594333
 Prefab:
   m_ObjectHideFlags: 0
@@ -346,7 +367,49 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1079180393234912, guid: f865817725a240b4abe44a1ce5d76b98, type: 2}
       propertyPath: m_Name
-      value: Nekolai Mover
+      value: Nekolai
+      objectReference: {fileID: 0}
+    - target: {fileID: 1316313737274598, guid: f865817725a240b4abe44a1ce5d76b98, type: 2}
+      propertyPath: m_TagString
+      value: Gun Barrel
+      objectReference: {fileID: 0}
+    - target: {fileID: 114531275799615206, guid: f865817725a240b4abe44a1ce5d76b98,
+        type: 2}
+      propertyPath: BulletSpawnPoint
+      value: 
+      objectReference: {fileID: 1113076428}
+    - target: {fileID: 1079180393234912, guid: f865817725a240b4abe44a1ce5d76b98, type: 2}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 212882782322021510, guid: f865817725a240b4abe44a1ce5d76b98,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 212882782322021510, guid: f865817725a240b4abe44a1ce5d76b98,
+        type: 2}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 212133318853289476, guid: f865817725a240b4abe44a1ce5d76b98,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 212133318853289476, guid: f865817725a240b4abe44a1ce5d76b98,
+        type: 2}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 212882782322021510, guid: f865817725a240b4abe44a1ce5d76b98,
+        type: 2}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1137415503977892, guid: f865817725a240b4abe44a1ce5d76b98, type: 2}
+      propertyPath: m_Name
+      value: Gun
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f865817725a240b4abe44a1ce5d76b98, type: 2}
