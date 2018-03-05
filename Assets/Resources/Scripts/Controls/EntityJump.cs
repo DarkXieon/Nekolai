@@ -4,7 +4,7 @@ using System.Collections;
 [RequireComponent(typeof(Rigidbody2D))]
 public class EntityJump : MonoBehaviour, IJump
 {
-    public float JumpHeight { get; private set; }
+    [SerializeField] public float JumpHeight { get; private set; }
 
     public bool InAir { get; private set; }
 
@@ -17,7 +17,7 @@ public class EntityJump : MonoBehaviour, IJump
     // Use this for initialization
     void Start()
     {
-        JumpHeight = 2;
+        JumpHeight = 1250;
 
         InAir = false;
 
@@ -58,7 +58,7 @@ public class EntityJump : MonoBehaviour, IJump
     
     public void Jump()
     {
-        var force = new Vector2(0, 500);
+        var force = new Vector2(0, JumpHeight);
 
         if (!this.InAir)
         {
