@@ -58,7 +58,7 @@ public class EntityJump : MonoBehaviour, IJump
     
     public void Jump()
     {
-        var force = new Vector2(0, 1000);
+        var force = new Vector2(0, 500);
 
         if (!this.InAir)
         {

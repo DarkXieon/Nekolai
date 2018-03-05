@@ -6,11 +6,10 @@ public class BulletScript : MonoBehaviour
 {
     public float damage; // the damage to deal to the object on contact (is >= 0)
     public bool owner; // true if bullet is from the Player, false if bullet is from Enemies, Map, etc.
-
-	// Add this to the bullet prefab in order to check collisions, the bullet is the trigger
-
-	// The enemy script will have a takeAwayHealth function or some way to take it away
-	void OnTriggerEnter2D (Collider2D collision)
+    // Add this to the bullet prefab in order to check collisions, the bullet is the trigger
+    
+    // The enemy script will have a takeAwayHealth function or some way to take it away
+    void OnTriggerEnter2D (Collider2D collision)
 	{
         /* Comment out by Kermit -> get their Stat_Health to check
 		if(collision.gameObject.tag == "Enemy")
