@@ -66,6 +66,7 @@ public class Stat_Health : Stat
             EventManager.Instance.ExecuteObjectSpecificEvent(EventType.DEATH, this.gameObject);
             Destroy(this.gameObject, 3f);
             Destroy(this.healthText.transform.parent.gameObject, 3f);
+            Debug.Log("working");
         }
 
     }

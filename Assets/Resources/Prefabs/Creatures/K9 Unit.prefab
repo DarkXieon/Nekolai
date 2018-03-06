@@ -41,6 +41,7 @@ GameObject:
   - component: {fileID: 114463504978044580}
   - component: {fileID: 114456948776000128}
   - component: {fileID: 114966308044639530}
+  - component: {fileID: 114256800097720064}
   m_Layer: 0
   m_Name: K9 Unit
   m_TagString: Untagged
@@ -170,8 +171,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1120431988996622}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 40.588657, y: 7.3128686, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 10, y: 12, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4358262202637814}
@@ -254,6 +255,21 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114256800097720064
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1120431988996622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f30706190e6ce54589804ca0cbb3f47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _stateParamName: State
+  _jumpTriggerName: Jump
+  _inAirParamName: In Air
+  _deathTriggerName: Death
 --- !u!114 &114456948776000128
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -265,7 +281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdb2e12c3059eb1459742074fc50cd98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseValue: 0
+  baseValue: 3
   preMultModifiers: 1
   postMultModifiers: 1
   additiveModifiers: 0
@@ -281,7 +297,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7a43c631e3b99e4785755b711b4b933, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseValue: 1
+  baseValue: 2
   preMultModifiers: 1
   postMultModifiers: 1
   additiveModifiers: 0

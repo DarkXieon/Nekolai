@@ -22,7 +22,7 @@ public class GunShotScript : MonoBehaviour {
 	private float bullet_Timer = 0f;
 
 	// This will tell the bullet to go left or right depending on which way the sprite is facing
-	private Rigidbody2D positionOfParent;
+	private Transform positionOfParent;
 	private float OldPosition;
 
     //private Stat_Power power; // used to determine damage 
@@ -32,9 +32,9 @@ public class GunShotScript : MonoBehaviour {
 
 
 	// Use this for initialization
-	void Start ()
+	void Awake()
 	{
-		positionOfParent = BulletSpawnPoint.GetComponentInParent<Rigidbody2D>();
+		positionOfParent = BulletSpawnPoint.parent;
        // power = this.GetComponent<Stat_Power>();
 	}
 

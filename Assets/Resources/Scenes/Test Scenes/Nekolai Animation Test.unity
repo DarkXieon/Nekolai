@@ -268,6 +268,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1060881544 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4216447216288634, guid: f865817725a240b4abe44a1ce5d76b98,
+    type: 2}
+  m_PrefabInternal: {fileID: 1424078223}
 --- !u!1001 &1197594333
 Prefab:
   m_ObjectHideFlags: 0
@@ -329,6 +334,11 @@ Prefab:
     - target: {fileID: 1120431988996622, guid: 2f2a7a68c7aec4447bf6bdf61e6d1545, type: 2}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 212441963463337946, guid: 2f2a7a68c7aec4447bf6bdf61e6d1545,
+        type: 2}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2f2a7a68c7aec4447bf6bdf61e6d1545, type: 2}
@@ -432,6 +442,11 @@ Prefab:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 114531275799615206, guid: f865817725a240b4abe44a1ce5d76b98,
+        type: 2}
+      propertyPath: BulletSpawnPoint
+      value: 
+      objectReference: {fileID: 1060881544}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f865817725a240b4abe44a1ce5d76b98, type: 2}
   m_IsPrefabParent: 0

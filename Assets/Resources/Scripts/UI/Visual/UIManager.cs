@@ -2,15 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour {
 
     GameObject[] pauseObjects;
 
+    private bool _paused;
+
     // Use this for initialization
     void Start()
     {
         Time.timeScale = 1;
+        _paused = false;
         pauseObjects = GameObject.FindGameObjectsWithTag("ShowOnPause");
         hidePaused();
     }
@@ -57,19 +61,22 @@ public class UIManager : MonoBehaviour {
     //controls the pausing of the scene - Resume Button
     public void pauseControl()
     {
-        if (Time.timeScale == 1)
+        if (!_paused)
         {
             // Pauses the game -- Comment left by: Kermit
             MasterAudioSource.mas.PauseAllAudio();
             Time.timeScale = 0;
+            _paused = !_paused;
             showPaused();
             
         }
-        else if (Time.timeScale == 0)
+        else if (_paused)
         {
+
             // Unpauses the game -- Comment left by: Kermit
             Time.timeScale = 1;
             hidePaused();
+            _paused = !_paused;
             MasterAudioSource.mas.UnPauseAllAudio();
 
         }

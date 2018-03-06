@@ -32,7 +32,7 @@ public class EquipmentManager : MonoBehaviour
 
         _ownedFirearms = new List<IFirearm>();
 
-        var starterPistol = Resources.Load("StarterPistol") as Firearm;
+        var starterPistol = Resources.Load("Scriptable Objects\\Created Assets\\Firearms\\Starter Pistol") as Firearm;
         this.AddWeapon(starterPistol);
         this.Equip(starterPistol);
 
@@ -100,7 +100,7 @@ public class EquipmentManager : MonoBehaviour
 
     private void Cheat()
     {
-        var rifle = Resources.Load("Rifle") as Firearm;
+        var rifle = Resources.Load("Scriptable Objects\\Created Assets\\Firearms\\Rifle") as Firearm;
 
         this.AddWeapon(rifle);
     }

@@ -26,8 +26,8 @@ public class PlatformMover : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-
+    //Change by Andrew: if you are using Time.deltaTime, this should be fixed update so the speed doesn't change
+    void FixedUpdate()
     {
         // Logic for horizontal moving platforms
         if (this.platformType == 0)
@@ -79,7 +79,7 @@ public class PlatformMover : MonoBehaviour
             }
 
         }
-
+        
 
 
 
