@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 
-public class MainMenu : MonoBehaviour {
-
+public class MainMenu : MonoBehaviour
+{
     public bool isNewGame;
     public bool isContinue;
     public bool isOptions;
@@ -19,6 +19,7 @@ public class MainMenu : MonoBehaviour {
 
             // Change the scene -- Comment left by: Kermit
             SceneManager.LoadScene(1);
+            
             GetComponent<Renderer>().material.color = Color.cyan;
         }
         if (isContinue)

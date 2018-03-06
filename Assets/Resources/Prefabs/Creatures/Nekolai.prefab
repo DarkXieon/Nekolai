@@ -30,9 +30,10 @@ GameObject:
   - component: {fileID: 114393608816045646}
   - component: {fileID: 114431479351290212}
   - component: {fileID: 114551687777993958}
+  - component: {fileID: 114551946536427108}
   m_Layer: 0
   m_Name: Nekolai
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48,7 +49,7 @@ GameObject:
   - component: {fileID: 212882782322021510}
   - component: {fileID: 114531275799615206}
   m_Layer: 0
-  m_Name: Starter Pistol
+  m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64,7 +65,7 @@ GameObject:
   - component: {fileID: 4216447216288634}
   m_Layer: 0
   m_Name: Barrel Exit
-  m_TagString: Untagged
+  m_TagString: Gun Barrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -273,7 +274,7 @@ MonoBehaviour:
   _stateParamName: State
   _jumpTriggerName: Jump
   _inAirParamName: In Air
-  _deathTriggerName: 
+  _deathTriggerName: Death
 --- !u!114 &114191491068766818
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -323,9 +324,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddaa1a092b36f7148acd15ffc4b843ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Bullet_Spawn_Point: {fileID: 1316313737274598}
+  BulletSpawnPoint: {fileID: 4216447216288634}
   Bullet: {fileID: 1492006244986396, guid: 22e74990e764d43d78a96e7ad02da32f, type: 2}
-  Bullet_Force: 0.05
+  BulletForce: 0.02
 --- !u!114 &114551687777993958
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -339,6 +340,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rotateAround: {fileID: 4430186556194872}
   _pointWith: {fileID: 4216447216288634}
+--- !u!114 &114551946536427108
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1079180393234912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97769cb1723e6c045b43940e3664c9e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114677361025475412
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -406,7 +418,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -414,7 +426,7 @@ SpriteRenderer:
   m_Size: {x: 0.2, y: 0.2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 2
 --- !u!212 &212882782322021510
 SpriteRenderer:
@@ -450,13 +462,13 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 9493a7de008dae7448d49f54b8a2475e, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 1
+  m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 16, y: 12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
