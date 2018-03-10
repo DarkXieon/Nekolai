@@ -5,6 +5,8 @@ using System.Collections;
 public class EntityJump : MonoBehaviour, IJump
 {
     [SerializeField] public float JumpHeight { get; private set; }
+    [SerializeField] private float jumpHeight; // one for testing o-o
+
 
     public bool InAir { get; private set; }
 
@@ -58,7 +60,7 @@ public class EntityJump : MonoBehaviour, IJump
     
     public void Jump()
     {
-        var force = new Vector2(0, JumpHeight);
+        var force = new Vector2(0, jumpHeight/*JumpHeight... for testing; we couldn't set JumpHeight in the editor.*/);
 
         if (!this.InAir)
         {
@@ -77,4 +79,18 @@ public class EntityJump : MonoBehaviour, IJump
             EventManager.Instance.ExecuteObjectSpecificEvent(EventType.JUMP, this.gameObject);
         }
     }
+
+
+    public void Set_jumpHeight(float h)
+    {
+        if(h < 0)
+        {
+            Debug.LogError("Jump height cannot be negative!");
+            return;
+        }
+
+        this.jumpHeight = h;
+
+    }
+
 }
