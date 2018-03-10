@@ -74,7 +74,7 @@ public class EquipmentManager : MonoBehaviour
             ? _equiped.LengthOfBarrel - toEquip.LengthOfBarrel
             : 0;
         localPosition.x -= differance;
-
+        
         _gunBarrelTransform.localPosition = localPosition;
 
         _gunSpriteRenderer.sprite = toEquip.FirearmSprite;

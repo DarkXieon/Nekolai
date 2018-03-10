@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using UnityEditor;
+﻿using System;
+using UnityEngine;
 
 [CreateAssetMenu(menuName = "Firearms")]
 public class Firearm : ScriptableObject, IFirearm
@@ -33,15 +33,15 @@ public class Firearm : ScriptableObject, IFirearm
 
     [SerializeField]
     private bool _shouldFlip;
-    
+
     //Eventually this will be triggered by an event
     public void FireGun()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public void ReadyGun()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 }
