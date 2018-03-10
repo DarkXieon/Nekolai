@@ -14,6 +14,9 @@ public class GunShotScript : MonoBehaviour {
 	[HideInInspector]
 	public float BulletForce = .02f;
 
+	[HideInInspector]
+	public AudioSource GunShotSound;
+
 	// Need to know if we are already shooting
 	private bool shooting = false;
 
@@ -47,6 +50,10 @@ public class GunShotScript : MonoBehaviour {
 		{
 			// Set shooting to true
 			shooting = true;
+
+			Debug.Assert (GunShotSound != null, "That weapon has no soundbite attached");
+
+			GunShotSound.Play();
 
 			// The Bullet instantiation, to make a copy whenever firing
 			GameObject Bullet_Handler;
