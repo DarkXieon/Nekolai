@@ -2,12 +2,12 @@
 using UnityEditor;
 using System.Linq;
 
-public class FloorDestroyer : MonoBehaviour, ITrap
+public class FloorDestroyer : Trap
 {
     [SerializeField]
     private GameObject _toDestroy;
 
-    public void Activate()
+	public override void Activate()
     {
         var rigidbody2D = this.GetComponent<Rigidbody2D>();
 
