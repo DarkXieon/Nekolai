@@ -13,6 +13,7 @@ public class MainMenu : MonoBehaviour
     void OnMouseUp() {
         if (isNewGame) 
         {
+            Debug.LogWarning("HEHE_1");
             // Update the audio
             MasterAudioSource.mas.StopAllAudio();
             MasterAudioSource.mas.transform.Find("Level_1").GetComponent<AudioSource>().Play();
@@ -20,37 +21,69 @@ public class MainMenu : MonoBehaviour
             // Change the scene -- Comment left by: Kermit
             SceneManager.LoadScene(1);
             
-            GetComponent<Renderer>().material.color = Color.cyan;
+            //GetComponent<Renderer>().material.color = Color.cyan;
         }
         if (isContinue)
-        { 
+        {
+            Debug.LogWarning("HEHE_2");
             // Update the audio
             MasterAudioSource.mas.StopAllAudio();
             MasterAudioSource.mas.transform.Find("Level_1").GetComponent<AudioSource>().Play();
 
             // Change the scene -- Comment left by: Kermit
             SceneManager.LoadScene(1);
-            GetComponent<Renderer>().material.color = Color.cyan;
+           // GetComponent<Renderer>().material.color = Color.cyan;
         }
         if (isOptions)
         {
-            GetComponent<Renderer>().material.color = Color.cyan;
+            //GetComponent<Renderer>().material.color = Color.cyan;
         }
         if (isQuit)
         {
-            GetComponent<Renderer>().material.color = Color.cyan;
+            Debug.LogWarning("HEHE_3");
+            //GetComponent<Renderer>().material.color = Color.cyan;
             UnityEditor.EditorApplication.isPlaying = false; //temporary for testing in Unity
             //Application.Quit(); 
         }
     }
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+    public void CallMeNow()
+    {
+        if (isNewGame)
+        {
+            Debug.LogWarning("HEHE_1");
+            // Update the audio
+            MasterAudioSource.mas.StopAllAudio();
+            MasterAudioSource.mas.transform.Find("Level_1").GetComponent<AudioSource>().Play();
+
+            // Change the scene -- Comment left by: Kermit
+            SceneManager.LoadScene(1);
+
+            //GetComponent<Renderer>().material.color = Color.cyan;
+        }
+        if (isContinue)
+        {
+            Debug.LogWarning("HEHE_2");
+            // Update the audio
+            MasterAudioSource.mas.StopAllAudio();
+            MasterAudioSource.mas.transform.Find("Level_1").GetComponent<AudioSource>().Play();
+
+            // Change the scene -- Comment left by: Kermit
+            SceneManager.LoadScene(1);
+            // GetComponent<Renderer>().material.color = Color.cyan;
+        }
+        if (isOptions)
+        {
+            //GetComponent<Renderer>().material.color = Color.cyan;
+        }
+        if (isQuit)
+        {
+            Debug.LogWarning("HEHE_3");
+            //GetComponent<Renderer>().material.color = Color.cyan;
+            UnityEditor.EditorApplication.isPlaying = false; //temporary for testing in Unity
+            //Application.Quit(); 
+        }
+    }
+
 }
