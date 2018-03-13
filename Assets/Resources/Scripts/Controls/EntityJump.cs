@@ -1,16 +1,33 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class EntityJump : MonoBehaviour, IJump
 {
-    [SerializeField] public float JumpHeight { get; private set; }
+    public float JumpHeight
+    {
+        get { return this.jumpHeight; }
+        private set
+        {
+            if (value < 0)
+            {
+                Debug.LogError("Jump height cannot be negative!");
+            }
+            else
+            {
+                this.jumpHeight = value;
+            }
+        }
+    }
+
     [SerializeField] private float jumpHeight; // one for testing o-o
-
-
+    
     public bool InAir { get; private set; }
 
     public bool UsedSecondJump { get; private set; }
+
+    public bool CanJumpTwice { get; set; }
 
     private Transform _jumperTransform;
 
@@ -19,7 +36,7 @@ public class EntityJump : MonoBehaviour, IJump
     // Use this for initialization
     void Start()
     {
-        JumpHeight = 1250;
+        //JumpHeight = 1250;
 
         InAir = false;
 
@@ -60,37 +77,46 @@ public class EntityJump : MonoBehaviour, IJump
     
     public void Jump()
     {
-        var force = new Vector2(0, jumpHeight/*JumpHeight... for testing; we couldn't set JumpHeight in the editor.*/);
-
+        var force = new Vector2(0, Mathf.Sqrt(jumpHeight * 6 * _jumper.gravityScale * Physics2D.gravity.y * -1));//jumpHeight/*JumpHeight... for testing; we couldn't set JumpHeight in the editor.*/);
+        var jumpForceReset = new Vector2(_jumper.velocity.x, 0);
+        
         if (!this.InAir)
         {
             this.InAir = true;
+            
+            _jumper.velocity = jumpForceReset;
 
-            _jumper.AddRelativeForce(force);
+            _jumper.AddRelativeForce(force, ForceMode2D.Impulse);
             
             EventManager.Instance.ExecuteObjectSpecificEvent(EventType.JUMP, this.gameObject);
+
+            Debug.Log(_jumper.velocity.y);
         }
         else if (this.InAir && !this.UsedSecondJump)
         {
             this.UsedSecondJump = true;
+
+            _jumper.velocity = jumpForceReset;
             
-            _jumper.AddRelativeForce(new Vector2(0, force.y));
+            _jumper.AddRelativeForce(force, ForceMode2D.Impulse);
             
             EventManager.Instance.ExecuteObjectSpecificEvent(EventType.JUMP, this.gameObject);
         }
     }
-
-
-    public void Set_jumpHeight(float h)
+    
+    private void FixedUpdate()
     {
-        if(h < 0)
+        Debug.Log(_jumper.velocity.y);
+
+        /*
+        var force = new Vector2(0, JumpHeight * Physics2D.gravity.y * Time.fixedDeltaTime);
+
+        if(this.InAir && _currentJumpTime < _jumpTime)
         {
-            Debug.LogError("Jump height cannot be negative!");
-            return;
+            _jumper.AddForce(force);
+
+            _currentJumpTime += Time.fixedDeltaTime;
         }
-
-        this.jumpHeight = h;
-
+        */
     }
-
 }

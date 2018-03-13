@@ -1,37 +1,43 @@
 ﻿using UnityEngine;
 using UnityEditor;
 using System.Linq;
+using System.Collections.Generic;
 
 public class FloorDestroyer : Trap
 {
     [SerializeField]
-    private GameObject _toDestroy;
+    private float _destroySelfDelay;
 
-	public override void Activate()
+    private float _startingYPosition;
+
+    private List<GameObject> _immuneObjects;
+    
+    public override void Activate()
     {
         var rigidbody2D = this.GetComponent<Rigidbody2D>();
 
         rigidbody2D.isKinematic = false;
-
-        Debug.Log("Activated");
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    private void Start()
     {
-        Debug.Log("Entered");
+        _immuneObjects = new List<GameObject>();
 
-        Debug.Log(other.gameObject.name);
+        _startingYPosition = transform.position.y;
+    }
 
-        if(other.gameObject.Equals(_toDestroy))
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        var otherGameObject = other.gameObject;
+
+        if(_startingYPosition == transform.position.y)
         {
-            Destroy(this._toDestroy);
-            Destroy(this.gameObject);
+            _immuneObjects.Add(otherGameObject);
         }
-        /*
-        other.gameObject.SetActive(false);
-
-        Destroy(other.gameObject);
-        Destroy(this.gameObject);
-        */
+        else if (other.gameObject.tag == "Terrain" && !_immuneObjects.Contains(otherGameObject))
+        {
+            Destroy(otherGameObject);
+            Destroy(this.gameObject, _destroySelfDelay);
+        }
     }
 }

@@ -11,5 +11,7 @@ public interface IJump
     
     bool UsedSecondJump { get; }
 
+    bool CanJumpTwice { get; set; }
+
     void Jump();
 }

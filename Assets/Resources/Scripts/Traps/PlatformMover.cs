@@ -37,7 +37,7 @@ public class PlatformMover : MonoBehaviour
             //Reverse direction when the Platform has reached the stopping point
             if (myTransform.position.x >= stopLocation.x)
             {
-                Debug.Log("No: " + Time.time);
+                //Debug.Log("No: " + Time.time);
                 direction *= -1;  //Reverse Direction
 
                 /*if (direction == direction * -1)
@@ -49,7 +49,7 @@ public class PlatformMover : MonoBehaviour
             }
             else if (myTransform.position.x <= startLocation.x)
             {
-                Debug.Log("Yes: " + Time.time);
+                //Debug.Log("Yes: " + Time.time);
                 direction *= -1;  //Reverse Direction
             }
 
@@ -62,7 +62,7 @@ public class PlatformMover : MonoBehaviour
             //Reverse direction when the Platform has reached the stopping point
             if (myTransform.position.y >= stopLocation.y)
             {
-                Debug.Log("No: " + Time.time);
+                //Debug.Log("No: " + Time.time);
                 direction *= -1;  //Reverse Direction
 
                 /*if (direction == direction * -1)
@@ -74,7 +74,7 @@ public class PlatformMover : MonoBehaviour
             }
             else if (myTransform.position.y <= startLocation.y)
             {
-                Debug.Log("Yes: " + Time.time);
+                //Debug.Log("Yes: " + Time.time);
                 direction *= -1;  //Reverse Direction
             }
 

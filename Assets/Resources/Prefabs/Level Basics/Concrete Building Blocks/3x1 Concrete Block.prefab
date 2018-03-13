@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 50114864476868894}
   - component: {fileID: 61406235143051544}
   m_Layer: 0
-  m_Name: 1x1 Concrete Block (2)
+  m_Name: 1x1 Concrete Block Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 50277496983903050}
   - component: {fileID: 61224308221747232}
   m_Layer: 0
-  m_Name: 1x1 Concrete Block (1)
+  m_Name: 1x1 Concrete Block Center
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 50945264856203378}
   - component: {fileID: 61930671653317674}
   m_Layer: 0
-  m_Name: 1x1 Concrete Block
+  m_Name: 1x1 Concrete Block Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -391,9 +391,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 3660c0dd5412fd3439d9d591438a2921, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4e55a866a09129d4eaa3d15e7f13a09d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 9, y: 9}
@@ -435,7 +435,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 3660c0dd5412fd3439d9d591438a2921, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4e55a866a09129d4eaa3d15e7f13a09d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

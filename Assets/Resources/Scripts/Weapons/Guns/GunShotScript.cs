@@ -51,9 +51,9 @@ public class GunShotScript : MonoBehaviour {
 			// Set shooting to true
 			shooting = true;
 
-			Debug.Assert (GunShotSound != null, "That weapon has no soundbite attached");
+			//Debug.Assert (GunShotSound != null, "That weapon has no soundbite attached");
+			//GunShotSound.Play();
 
-			GunShotSound.Play();
 
 			// The Bullet instantiation, to make a copy whenever firing
 			GameObject Bullet_Handler;

@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 114050456778097826}
   - component: {fileID: 50112542684178510}
   - component: {fileID: 61832756916763890}
+  - component: {fileID: 58492003363034278}
   - component: {fileID: 114191491068766818}
   - component: {fileID: 114965420162767452}
   - component: {fileID: 114677361025475412}
@@ -190,7 +191,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1079180393234912}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 12, z: 0}
+  m_LocalPosition: {x: -334.60574, y: -44.98524, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4430186556194872}
@@ -218,6 +219,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!58 &58492003363034278
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1079180393234912}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.5, y: -3}
+  serializedVersion: 2
+  m_Radius: 1.5
 --- !u!61 &61832756916763890
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -234,14 +250,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.2, y: 0.2}
-    newSize: {x: 0.2, y: 0.2}
+    oldSize: {x: 19.2, y: 10.8}
+    newSize: {x: 19.2, y: 10.8}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 7, y: 8}
+  m_Size: {x: 7, y: 8.5}
   m_EdgeRadius: 0
 --- !u!95 &95993683893954012
 Animator:
@@ -313,6 +329,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 054d35a5febf70c4bbdc130c80a1304c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jumpHeight: 100
 --- !u!114 &114531275799615206
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -327,6 +344,7 @@ MonoBehaviour:
   BulletSpawnPoint: {fileID: 4216447216288634}
   Bullet: {fileID: 1492006244986396, guid: 22e74990e764d43d78a96e7ad02da32f, type: 2}
   BulletForce: 0.02
+  GunShotSound: {fileID: 0}
 --- !u!114 &114551687777993958
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -418,15 +436,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: f026b05274a862648baa74ecb8a515c5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.2, y: 0.2}
+  m_Size: {x: 19.2, y: 10.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 2
 --- !u!212 &212882782322021510
 SpriteRenderer:
