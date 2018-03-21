@@ -1,11 +1,11 @@
 ﻿using System;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Firearms")]
+[CreateAssetMenu(menuName = "Firearm")]
 public class Firearm : ScriptableObject, IFirearm
 {
     public Sprite FirearmSprite { get { return _firearmSprite; } }
-
+    
     public AudioClip FireGunAudioClip { get { return _fireAudioClip; } }
     
     public string Name { get { return _name; } }
@@ -33,7 +33,7 @@ public class Firearm : ScriptableObject, IFirearm
 
     [SerializeField]
     private bool _shouldFlip;
-
+    
     //Eventually this will be triggered by an event
     public void FireGun()
     {

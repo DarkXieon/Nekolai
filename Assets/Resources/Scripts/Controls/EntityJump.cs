@@ -3,12 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class EntityJump : MonoBehaviour, IJump
+public abstract class EntityJump : MonoBehaviour, IJump
 {
     public float JumpHeight
     {
         get { return this.jumpHeight; }
-        private set
+        set
         {
             if (value < 0)
             {
@@ -34,7 +34,7 @@ public class EntityJump : MonoBehaviour, IJump
     private Rigidbody2D _jumper;
     
     // Use this for initialization
-    void Start()
+    protected virtual void Start()
     {
         //JumpHeight = 1250;
 
@@ -42,42 +42,62 @@ public class EntityJump : MonoBehaviour, IJump
 
         UsedSecondJump = false;
 
+        CanJumpTwice = true;
+
         _jumperTransform = this.transform;
 
         _jumper = this.GetComponent(typeof(Rigidbody2D)) as Rigidbody2D;
     }
 
-    // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
-        if (Input.GetKeyDown("w") && (!this.InAir || !this.UsedSecondJump))
+        if(ShouldJump())
         {
             Jump();
         }
     }
-    
-    void OnCollisionEnter2D(Collision2D collider)
+
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        var colliderPosition = collider.gameObject.transform.position;
-
-        if(colliderPosition.y <= _jumperTransform.position.y + 1)
+        if (collision.otherCollider is CircleCollider2D)
         {
-            EventManager.Instance.ExecuteObjectSpecificEvent(EventType.LAND, this.gameObject);
-            
-            this.InAir = false;
+            var circleCollider = collision.otherCollider as CircleCollider2D;
 
-            this.UsedSecondJump = false;
+            ContactPoint2D[] contacts = new ContactPoint2D[1];
+            int numberOfCollisions = collision.GetContacts(contacts);
+
+            if (numberOfCollisions > 0)
+            {
+                var collisionPoint = contacts[0].point;
+
+                var colliderCenter = circleCollider.bounds.center;
+                var colliderRadius = circleCollider.radius;
+
+                var collisionUnder =
+                    collisionPoint.x < Mathf.Cos((7 * Mathf.PI) / 4) * colliderRadius + colliderCenter.x &&
+                    collisionPoint.x > Mathf.Cos((5 * Mathf.PI) / 4) * colliderRadius + colliderCenter.x &&
+                    collisionPoint.y < colliderCenter.y;
+
+                if (collisionUnder)
+                {
+                    OnVerticalCollision(collision.collider);
+                }
+            }
+            else
+            {
+                Debug.Log("There was no collision point for some reason. . .");
+            }
         }
     }
 
-    void OnCollisonExit2D(Collision2D collider)
+    private void OnCollisonExit2D(Collision2D collider)
     {
         this.InAir = true;
     }
     
     public void Jump()
     {
-        var force = new Vector2(0, Mathf.Sqrt(jumpHeight * 6 * _jumper.gravityScale * Physics2D.gravity.y * -1));//jumpHeight/*JumpHeight... for testing; we couldn't set JumpHeight in the editor.*/);
+        var force = new Vector2(0, Mathf.Sqrt(jumpHeight * 6 * _jumper.gravityScale * Physics2D.gravity.y * -1));
         var jumpForceReset = new Vector2(_jumper.velocity.x, 0);
         
         if (!this.InAir)
@@ -92,7 +112,7 @@ public class EntityJump : MonoBehaviour, IJump
 
             Debug.Log(_jumper.velocity.y);
         }
-        else if (this.InAir && !this.UsedSecondJump)
+        else if (this.InAir && !this.UsedSecondJump && this.CanJumpTwice)
         {
             this.UsedSecondJump = true;
 
@@ -103,20 +123,31 @@ public class EntityJump : MonoBehaviour, IJump
             EventManager.Instance.ExecuteObjectSpecificEvent(EventType.JUMP, this.gameObject);
         }
     }
-    
-    private void FixedUpdate()
+
+    protected virtual void OnVerticalCollision(Collider2D collidedWith)
     {
-        Debug.Log(_jumper.velocity.y);
+        EventManager.Instance.ExecuteObjectSpecificEvent(EventType.LAND, this.gameObject);
 
+        this.InAir = false;
+
+        this.UsedSecondJump = false;
         /*
-        var force = new Vector2(0, JumpHeight * Physics2D.gravity.y * Time.fixedDeltaTime);
+        var edge = new Vector2(collidedWith.bounds.center.x + ((collidedWith.bounds.size.x / 2)), collidedWith.bounds.center.y);
 
-        if(this.InAir && _currentJumpTime < _jumpTime)
+        var direction = new Vector2(1, 0);
+
+        var hit = Physics2D.Raycast(edge, direction, 1f);
+        
+        if (hit.collider != null)
         {
-            _jumper.AddForce(force);
-
-            _currentJumpTime += Time.fixedDeltaTime;
+            Debug.Log(hit.collider.gameObject.name);
+        }
+        else
+        {
+            Debug.LogError("None Found");
         }
         */
     }
+
+    protected abstract bool ShouldJump();
 }

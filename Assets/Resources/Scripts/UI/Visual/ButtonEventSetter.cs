@@ -23,6 +23,7 @@ public class ButtonEventSetter : MonoBehaviour
 
     private void Start()
     {
+        /*
         var uiManager = FindObjectOfType(typeof(UIManager)) as UIManager;
 
         _resumeAction = () => EventManager.Instance.ExecuteEvent(EventType.RESUME_ON_CLICK);
@@ -32,8 +33,7 @@ public class ButtonEventSetter : MonoBehaviour
         EventManager.Instance.AddListener(EventType.RESUME_ON_CLICK, () => uiManager.pauseControl());
         EventManager.Instance.AddListener(EventType.RESTART_ON_CLICK, () => uiManager.Reload());
         EventManager.Instance.AddListener(EventType.QUIT_ON_CLICK, () => uiManager.LoadLevel("Main Menu"));
-
-        Debug.Log("confused");
+        */
     }
 
     private void OnEnable()

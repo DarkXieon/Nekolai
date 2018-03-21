@@ -36,8 +36,15 @@ public class GunScript : MonoBehaviour, IWeapons {
 		set { _power = value; }
 	}
 
+    Stat_Power IWeapons.Power
+    {
+        get
+        {
+            throw new System.NotImplementedException();
+        }
+    }
 
-	public void Attack()
+    public void Attack()
 	{
 		// Set shooting to true
 		shooting = true;

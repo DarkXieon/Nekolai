@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4406089475860482}
   - component: {fileID: 50513338796698758}
   - component: {fileID: 61278107317663450}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: 1x1 Scaled Concrete Block
   m_TagString: Terrain
   m_Icon: {fileID: 0}
@@ -37,7 +37,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4289487385627872}
   - component: {fileID: 212210516762357560}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Concrete Center
   m_TagString: Terrain
   m_Icon: {fileID: 0}

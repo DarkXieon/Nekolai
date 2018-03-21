@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4574623168014254}
   - component: {fileID: 50602185247812076}
   - component: {fileID: 61844729615327592}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: 1x1 Scaled Concrete Block Center
   m_TagString: Terrain
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4314484186595294}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: 1x3 Scaled Concrete Block Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52,7 +52,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4013274996226746}
   - component: {fileID: 212624343499411984}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Concrete Center
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68,7 +68,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4195443764776744}
   - component: {fileID: 212602765722198428}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Concrete Center
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84,7 +84,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4039770548874144}
   - component: {fileID: 212877570356339956}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Concrete Center
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4990768447693322}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: 1x7 Scaled Concrete Block
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,7 +116,7 @@ GameObject:
   - component: {fileID: 4889849576743064}
   - component: {fileID: 50539262594339274}
   - component: {fileID: 61123847631655510}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: 1x1 Scaled Concrete Block Top
   m_TagString: Terrain
   m_Icon: {fileID: 0}
@@ -132,7 +132,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4783487039817044}
   - component: {fileID: 212974151975284330}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Concrete Center
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -149,7 +149,7 @@ GameObject:
   - component: {fileID: 4493532915466896}
   - component: {fileID: 50763310608700414}
   - component: {fileID: 61691439444963598}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: 1x1 Scaled Concrete Block Center
   m_TagString: Terrain
   m_Icon: {fileID: 0}
@@ -166,7 +166,7 @@ GameObject:
   - component: {fileID: 4193414514023772}
   - component: {fileID: 50772525980524784}
   - component: {fileID: 61677122175512872}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: 1x1 Scaled Concrete Block Bottom
   m_TagString: Terrain
   m_Icon: {fileID: 0}
@@ -183,7 +183,7 @@ GameObject:
   - component: {fileID: 4684644364793744}
   - component: {fileID: 50850962665171100}
   - component: {fileID: 61791116992517310}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: 1x1 Scaled Concrete Block Top
   m_TagString: Terrain
   m_Icon: {fileID: 0}
@@ -199,7 +199,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4542259816646966}
   - component: {fileID: 212916661373270584}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Concrete Center
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -215,7 +215,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4248010362766954}
   - component: {fileID: 212059019354182844}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Concrete Center
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -230,7 +230,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4341839347831246}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: 1x3 Scaled Concrete Block Bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -247,7 +247,7 @@ GameObject:
   - component: {fileID: 4779661617097136}
   - component: {fileID: 50243437925963362}
   - component: {fileID: 61372824519134130}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: 1x1 Scaled Concrete Block Bottom
   m_TagString: Terrain
   m_Icon: {fileID: 0}
@@ -263,7 +263,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4266264811804514}
   - component: {fileID: 212965990374547248}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Concrete Center
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -280,7 +280,7 @@ GameObject:
   - component: {fileID: 4930674660690720}
   - component: {fileID: 50282098279220752}
   - component: {fileID: 61623570795475648}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: 1x1 Scaled Concrete Block Center
   m_TagString: Terrain
   m_Icon: {fileID: 0}

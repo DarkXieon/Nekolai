@@ -64,8 +64,8 @@ public class Stat_Health : Stat
         {
             //**EDITED BY ANDREW KAUS TO ADD DEATH ANIMATION FUNCTIONALLITY**//
             EventManager.Instance.ExecuteObjectSpecificEvent(EventType.DEATH, this.gameObject);
-            Destroy(this.gameObject, 3f);
-            Destroy(this.healthText.transform.parent.gameObject, 3f);
+            Destroy(this.gameObject, 1f);
+            Destroy(this.healthText.transform.parent.gameObject, 1f);
             Debug.Log("working");
         }
 

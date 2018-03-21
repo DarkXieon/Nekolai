@@ -38,8 +38,10 @@ public class GunShotScript : MonoBehaviour {
 	void Awake()
 	{
 		positionOfParent = BulletSpawnPoint.parent;
+
+        GunShotSound = this.GetComponent(typeof(AudioSource)) as AudioSource;
        // power = this.GetComponent<Stat_Power>();
-	}
+    }
 
 	// Update is called once per frame
 	void Update ()
@@ -51,8 +53,8 @@ public class GunShotScript : MonoBehaviour {
 			// Set shooting to true
 			shooting = true;
 
-			//Debug.Assert (GunShotSound != null, "That weapon has no soundbite attached");
-			//GunShotSound.Play();
+			Debug.Assert (GunShotSound != null, "That weapon has no soundbite attached");
+			GunShotSound.Play();
 
 
 			// The Bullet instantiation, to make a copy whenever firing

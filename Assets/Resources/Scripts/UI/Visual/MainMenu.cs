@@ -40,14 +40,14 @@ public class MainMenu : MonoBehaviour
         }
         if (isQuit)
         {
-            Debug.LogWarning("HEHE_3");
+            //Debug.LogWarning("HEHE_3");
             //GetComponent<Renderer>().material.color = Color.cyan;
-            UnityEditor.EditorApplication.isPlaying = false; //temporary for testing in Unity
-            //Application.Quit(); 
+            //UnityEditor.EditorApplication.isPlaying = false; //temporary for testing in Unity
+            Application.Quit(); 
         }
     }
 
-
+    /*
     public void CallMeNow()
     {
         if (isNewGame)
@@ -81,9 +81,8 @@ public class MainMenu : MonoBehaviour
         {
             Debug.LogWarning("HEHE_3");
             //GetComponent<Renderer>().material.color = Color.cyan;
-            UnityEditor.EditorApplication.isPlaying = false; //temporary for testing in Unity
+            //UnityEditor.EditorApplication.isPlaying = false; //temporary for testing in Unity
             //Application.Quit(); 
         }
-    }
-
+    }*/
 }

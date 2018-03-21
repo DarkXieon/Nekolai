@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4544389737177836}
   - component: {fileID: 50655520266644656}
   - component: {fileID: 61413532237037276}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: 1x1 Scaled Concrete Block Top
   m_TagString: Terrain
   m_Icon: {fileID: 0}
@@ -37,7 +37,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4545489223236652}
   - component: {fileID: 212603789672338148}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Concrete Center
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52,7 +52,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4952091389613952}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: 1x2 Scaled Concrete Block
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -69,7 +69,7 @@ GameObject:
   - component: {fileID: 4084990855291346}
   - component: {fileID: 50689738316977932}
   - component: {fileID: 61193113028865174}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: 1x1 Scaled Concrete Block Bottom
   m_TagString: Terrain
   m_Icon: {fileID: 0}
@@ -85,7 +85,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4816786758794300}
   - component: {fileID: 212383927185316562}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Concrete Center
   m_TagString: Untagged
   m_Icon: {fileID: 0}

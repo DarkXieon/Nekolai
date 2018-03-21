@@ -7,5 +7,7 @@ public class Stat_Speed : Stat
     public void Start()
     { 
         base.Start();
+
+        this.SetPostMultModifier(14);
     }
 }

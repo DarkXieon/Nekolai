@@ -76,11 +76,7 @@ public class PointGun : MonoBehaviour
         this.transform.position = endPosition;
         */
     }
-
-    public void PointFirearm(Transform pointWith)
-    {
-
-    }
+    
     /*
     private float GetDistanceFromOrigin(Vector2 currentPosition)
     {

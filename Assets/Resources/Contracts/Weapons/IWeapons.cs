@@ -7,7 +7,7 @@ public interface IWeapons
 {
 	string WeaponName { get; set; }
     // The amount of damage the weapon will give to enemies
-    int Power { get; set; } //<-- Use Stat_Power instead
+    Stat_Power Power { get; } //<-- Use Stat_Power instead
 
 
 	void Attack ();

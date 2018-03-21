@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Stat_Speed))]
@@ -13,18 +15,24 @@ public abstract class MoveableObject : MonoBehaviour, IMoveable
     //To store the movement of the object before we use it
     protected float _moveInput;
 
-    protected float _previousMoveInput;
+    private float _previousMoveInput;
 
     //The GameObject's Rigidbody
     protected Rigidbody2D _body;
 
     protected Stat_Speed _speedStat;
 
+    protected bool _canContinue;
+
     private bool _lastMovementWasPositive;
 
+    private List<Collider2D> _collidersPreventingMovement;
+
     // Use this for initialization
-    private void Start()
+    protected virtual void Start()
     {
+        _collidersPreventingMovement = new List<Collider2D>();
+
         _speedStat = this.GetComponent(typeof(Stat_Speed)) as Stat_Speed;
 
         _lastMovementWasPositive = false;
@@ -35,30 +43,42 @@ public abstract class MoveableObject : MonoBehaviour, IMoveable
 
         //Every GameObject the uses this component will have a RigidBody
         _body = GetComponent<Rigidbody2D>();
+
+        //Debug.Log(_body.)
     }
 
     // Update is called once per frame
-    private void Update()
+    protected virtual void Update()
     {
         var movementAmount = GetMovement();
         
         if(movementAmount != 0)
         {
             var movementIsPositive = movementAmount > 0;
-            var changedDirectionLeftToRight = movementIsPositive && !_lastMovementWasPositive;
-            var changedDirectionRightToLeft = !movementIsPositive && _lastMovementWasPositive;
+
+            var changedDirectionLeftToRight = _previousMoveInput != 0
+                ? movementIsPositive && !_lastMovementWasPositive
+                : movementIsPositive;
+
+            var changedDirectionRightToLeft = _previousMoveInput != 0
+                ? !movementIsPositive && _lastMovementWasPositive
+                : !movementIsPositive;
 
             if (changedDirectionLeftToRight)
             {
                 EventManager.Instance.ExecuteObjectSpecificEvent(EventType.TURN_RIGHT, this.gameObject);
+
+                _canContinue = true;
             }
             else if (changedDirectionRightToLeft)
             {
                 EventManager.Instance.ExecuteObjectSpecificEvent(EventType.TURN_LEFT, this.gameObject);
+                
+                _canContinue = true;
             }
 
             EventManager.Instance.ExecuteObjectSpecificEvent(EventType.WALK, this.gameObject);
-
+            //Debug.Log(movementAmount);
             _lastMovementWasPositive = movementIsPositive;
         }
         else
@@ -67,69 +87,77 @@ public abstract class MoveableObject : MonoBehaviour, IMoveable
         }
 
         _moveInput = movementAmount;
-        
-        /*
-        //reset the movement from the last input
-        //_moveInput = Vector2.zero;
-
-        //Get the amount to move the object by
-        var axis = GetMovement();
-        
-        _body.velocity = new Vector2(Mathf.Max(0, _body.velocity.x - _moveInput), _body.velocity.y);
-
-        _moveInput = (float)Math.Round(_body.velocity.x + axis * this.GetComponent<Stat_Speed>().GetCurrentValue(), 3);// * Time.fixedDeltaTime;
-
-        var yVeclocity = (float)Math.Round(_body.velocity.y, 3);
-
-        Debug.Log(axis);
-
-        if (_moveInput != 0f)
-        {
-            _moving = true;
-
-            EventManager.Instance.ExecuteObjectSpecificEvent(EventType.WALK, this.gameObject);
-        }
-        else if (_moveInput == 0f)*//* && yVeclocity == 0f)*//*
-        {
-            _moving = false;
-            
-            EventManager.Instance.ExecuteObjectSpecificEvent(EventType.NO_MOVEMENT, this.gameObject);
-        }
-
-        _previousMoveInput = _moveInput; 
-        */
     }
 
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
-        Move();
+        
+        if (_canContinue)
+        {
+            Move();
+        }
     }
 
     /* This method moves the parent GameObject in a direction defined by
      * _moveInput and a speed defined by _speed */
-    public void Move()
+    public virtual void Move()
     {
-        _body.velocity = new Vector2(_moveInput, _body.velocity.y);
+        //var previousSpeed = _previousMoveInput;// * 7 * 2;
+        var speed = _moveInput;// * 7 * 2;
+        //Debug.Log(speed + " " + this.gameObject.name);
+        
+        _previousMoveInput = _moveInput;
+        //Debug.Log(_canContinue);
+        _body.AddForce(new Vector2(speed, 0), ForceMode2D.Force);
     }
 
-    //This will be implemented by child classes and will return what direction if any, they will move in
-    protected abstract float GetMovement();
-    
-    public void OnCollisionStay2D(Collision2D collision)
+    private void OnCollisionExit2D(Collision2D collision)
     {
-        // We want to carry the force of the moving platform, but the velocity keeps resetting to 0... | TODO
-        if(collision.gameObject.GetComponent<PlatformMover>() != null)
-        {
-            
+        _collidersPreventingMovement.Remove(collision.otherCollider);
 
-            Debug.Log("Stop! We'll get 'em next time... | " + Time.time);
-            Debug.Log("Velocity BEFORE: " + this.GetComponent<Rigidbody2D>().velocity);
-            Debug.Log("Direction Vector" + collision.gameObject.GetComponent<PlatformMover>().direction);
-            this.GetComponent<Rigidbody2D>().velocity += collision.gameObject.GetComponent<PlatformMover>().direction;
-            Debug.Log("Velocity AFTER: " + this.GetComponent<Rigidbody2D>().velocity);
+        if (!_collidersPreventingMovement.Any())
+        {
+            _canContinue = true;
         }
     }
-
     
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.otherCollider is CircleCollider2D)
+        {
+            var circleCollider = collision.otherCollider as CircleCollider2D;
 
+            ContactPoint2D[] contacts = new ContactPoint2D[1];
+            int numberOfCollisions = collision.GetContacts(contacts);
+
+            if (numberOfCollisions > 0)
+            {
+                var collisionPoint = contacts[0].point.y;
+
+                var colliderCenter = circleCollider.bounds.center.y;
+                var colliderRadius = circleCollider.radius;
+
+                var collisionHorisontial =
+                    collisionPoint < Mathf.Sin(Mathf.PI / 4) * colliderRadius + colliderCenter &&
+                    collisionPoint > Mathf.Sin((7 * Mathf.PI) / 4) * colliderRadius + colliderCenter;
+
+                if (collisionHorisontial)
+                {
+                    _collidersPreventingMovement.Add(collision.otherCollider);
+
+                    _canContinue = false;
+                }
+                else if (!_collidersPreventingMovement.Any())
+                {
+                    _canContinue = true;
+                }
+            }
+            else
+            {
+                Debug.Log("There was no collision point for some reason. . .");
+            }
+        }
+    }
+    //This will be implemented by child classes and will return what direction if any, they will move in
+    protected abstract float GetMovement();
 }

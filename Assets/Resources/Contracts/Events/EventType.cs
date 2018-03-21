@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEditor;
 
 public enum EventType
 {
@@ -14,5 +13,8 @@ public enum EventType
     DEATH,
     RESUME_ON_CLICK,
     RESTART_ON_CLICK,
-    QUIT_ON_CLICK
+    QUIT_ON_CLICK,
+    PLAYER_FELL_OFF_MAP,
+    MELEE_START,
+    MELEE_END
 }
