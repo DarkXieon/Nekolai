@@ -13,8 +13,8 @@ public class WorldGraphEditor : Editor
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
-
-        if(GUI.Button(EditorGUILayout.GetControlRect(), new GUIContent("Bake World Graph")))
+        
+        if (GUI.Button(EditorGUILayout.GetControlRect(), new GUIContent("Bake World Graph")))
         {
             WorldGraph graph = (WorldGraph)target;
 
@@ -31,7 +31,19 @@ public class WorldGraphEditor : Editor
 
 public class WorldGraph : MonoBehaviour
 {
+    [System.Serializable]
+    private class VisualizationSettings
+    {
+        public bool VisualizeGraph;
+        public Color EmptySpaceColor;
+        public Color NormalTerrainColor;
+        public Color JumpMarkerColor;
+        public Color FallMarkerColor; 
+    }
+
     public static WorldGraph Singleton;
+
+    [SerializeField] private VisualizationSettings visualizationSettings;
 
     public float CellWidth;
     public float CellHeight;
@@ -46,6 +58,35 @@ public class WorldGraph : MonoBehaviour
         CreateWorldGraph();
 
         Singleton = this;
+    }
+
+    private void OnDrawGizmos()
+    {
+        if(visualizationSettings.VisualizeGraph)
+        {
+            var sortedTest = Nodes.OrderBy(node => (int)node.NodeType).ToArray();
+
+            for(int i = 0; i < sortedTest.Length; i++)
+            {
+                switch (sortedTest[i].NodeType)
+                {
+                    case NodeType.Empty:
+                        Gizmos.color = visualizationSettings.EmptySpaceColor;
+                        break;
+                    case NodeType.Terrain:
+                        Gizmos.color = visualizationSettings.NormalTerrainColor;
+                        break;
+                    case NodeType.JumpBlock:
+                        Gizmos.color = visualizationSettings.JumpMarkerColor;
+                        break;
+                    case NodeType.FallBlock:
+                        Gizmos.color = visualizationSettings.FallMarkerColor;
+                        break;
+                }
+
+                Gizmos.DrawWireCube(sortedTest[i].CellBounds.center, sortedTest[i].CellBounds.size);
+            }
+        }
     }
 
     public void CreateWorldGraph()

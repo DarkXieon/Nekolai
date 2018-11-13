@@ -13,11 +13,11 @@ public abstract class PathfindingMarker : MonoBehaviour
             Debug.LogError("Set collider on Pathfinding Marker to be a trigger");
     }
 
-    private void OnDrawGizmos()
-    {
-        Collider2D markerCollider = GetComponent<Collider2D>();
+    //private void OnDrawGizmos()
+    //{
+    //    Collider2D markerCollider = GetComponent<Collider2D>();
 
-        Gizmos.color = gizmoColor;
-        Gizmos.DrawWireCube(markerCollider.bounds.center, markerCollider.bounds.size);
-    }
+    //    Gizmos.color = gizmoColor;
+    //    Gizmos.DrawWireCube(markerCollider.bounds.center, markerCollider.bounds.size);
+    //}
 }
