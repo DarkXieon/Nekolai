@@ -14,6 +14,10 @@ public class AIMovement : MoveableObject
     private Transform _moveTo;
     private float _offset;
 
+    private Node _currentNode;
+    private Node _nextNode;
+
+    private Vector2 _previousTarget;
     private Vector2 _targetPosition;
     private UnityAction _deathListener;
     private UnityAction _landListener;
@@ -73,8 +77,8 @@ public class AIMovement : MoveableObject
 
         passedTargetVertically = (_currentDirection.HasFlag(MultiDirection.Up) && transform.position.y > _targetPosition.y)
             || (_currentDirection.HasFlag(MultiDirection.Up) && Mathf.Approximately(transform.position.y, _targetPosition.y))
-            || (_currentDirection.HasFlag(MultiDirection.Down) && transform.position.y < previousTarget.y)
-            || (_currentDirection.HasFlag(MultiDirection.Down) && Mathf.Approximately(transform.position.y, previousTarget.y))
+            || (_currentDirection.HasFlag(MultiDirection.Down) && transform.position.y < _previousTarget.y)
+            || (_currentDirection.HasFlag(MultiDirection.Down) && Mathf.Approximately(transform.position.y, _previousTarget.y))
             || (!_currentDirection.HasFlag(MultiDirection.Up) && !_currentDirection.HasFlag(MultiDirection.Down));
         //|| (Mathf.Abs(_targetPosition.y - transform.position.y) < .5f);
 
@@ -88,20 +92,22 @@ public class AIMovement : MoveableObject
         if (started)
         {
             _pathfinder.SearchStep();
-
-            Node previousNode = null;
-            Node nextNode = null;
-
+            
             if (_pathfinder.path.Count > 1)
             {
-                previousNode = _pathfinder.path.Pop();
-                nextNode = _pathfinder.path.Pop();
-                previousTarget = previousNode.CellBounds.center;
-                _targetPosition = nextNode.CellBounds.center;
+                _currentNode = _pathfinder.path.Pop();
+
+                Debug.Assert(_pathfinder.FindTerrainClosestTo(transform.position).Index == _currentNode.Index);
+
+                _nextNode = _pathfinder.path.Pop();
+                
+                _previousTarget = _currentNode.CellBounds.center;
+                _targetPosition = _nextNode.CellBounds.center;
 
                 UpdateMovementType();
-                _approachingJumpPad = previousNode.NodeType == NodeType.JumpBlock && _currentDirection.HasFlag(MultiDirection.Up);
-                _approachingFallPad = nextNode.NodeType == NodeType.FallBlock;
+
+                _approachingJumpPad = _currentNode.NodeType == NodeType.JumpBlock && _currentDirection.HasFlag(MultiDirection.Up);
+                _approachingFallPad = _nextNode.NodeType == NodeType.FallBlock;
 
                 passedTargetHorizontally = false;
                 passedTargetVertically = false;
@@ -118,24 +124,21 @@ public class AIMovement : MoveableObject
     private void UpdateMovementType()
     {
         _currentDirection = MultiDirection.Stationary;
-
-        bool hasHorizontalMovement = !Mathf.Approximately(_targetPosition.x - transform.position.x, 0f);
-        bool hasVerticalMovement = !Mathf.Approximately(_targetPosition.y - previousTarget.y, 0f);
-
-        if (hasHorizontalMovement && _targetPosition.x - transform.position.x > 0f)
+        
+        if (_currentNode.Column < _nextNode.Column)
         {
             _currentDirection |= MultiDirection.Right;
         }
-        else if (hasHorizontalMovement)
+        else if (_currentNode.Column > _nextNode.Column)
         {
             _currentDirection |= MultiDirection.Left;
         }
 
-        if (hasVerticalMovement && _targetPosition.y - previousTarget.y > 0f)
+        if (_currentNode.Row > _nextNode.Row) //row numbering starts from the top
         {
             _currentDirection |= MultiDirection.Up;
         }
-        else if (hasVerticalMovement)
+        else if (_currentNode.Row < _nextNode.Row)
         {
             _currentDirection |= MultiDirection.Down;
         }
@@ -143,7 +146,6 @@ public class AIMovement : MoveableObject
 
     //bool waitForCollision = false;
     bool requiresPathChange = false;
-    Vector2 previousTarget = Vector2.zero;
 
     protected override void Update()
     {
@@ -157,7 +159,7 @@ public class AIMovement : MoveableObject
 
         Node currentNode = _pathfinder.FindTerrainClosestTo(transform.position);
 
-        if (_approachingJumpPad)//currentNode != null && currentNode.NodeType == NodeType.JumpBlock && currentNode.CellBounds.center.y < _targetPosition.y && !_jumpComponent.InAir && _moveTo.position.y > _targetPosition.y) //  && _currentDirection.HasFlag((MultiDirection)(int)currentNode.JumpMarker.JumpDirection)
+        if (_currentDirection.HasFlag(MultiDirection.Up) && _currentNode.NodeType == NodeType.JumpBlock)//_approachingJumpPad)//currentNode != null && currentNode.NodeType == NodeType.JumpBlock && currentNode.CellBounds.center.y < _targetPosition.y && !_jumpComponent.InAir && _moveTo.position.y > _targetPosition.y) //  && _currentDirection.HasFlag((MultiDirection)(int)currentNode.JumpMarker.JumpDirection)
         {
             _jumpComponent.RequestJump();
         }
@@ -201,10 +203,13 @@ public class AIMovement : MoveableObject
 
         if (shouldAdvance)
         {
-            //int direction = _movingRight ? 1 : -1;
+            int direction = 0;
 
-            int direction = _targetPosition.x - transform.position.x > 0f ? 1 : -1;
-
+            if (_currentDirection.HasFlag(MultiDirection.Right))
+                direction = 1;
+            else if (_currentDirection.HasFlag(MultiDirection.Left))
+                direction = -1;
+                
             return _speedStat.GetCurrentValue() * direction;
         }
         else if ((_jumpComponent.InAir && _currentDirection.HasFlag(MultiDirection.Down)) || (!_currentDirection.HasFlag(MultiDirection.Right) && !_currentDirection.HasFlag(MultiDirection.Left)) || passedTargetHorizontally)

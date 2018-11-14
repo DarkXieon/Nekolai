@@ -5,12 +5,24 @@ using UnityEngine;
 
 public class WorldPathfinder
 {
+    private struct NodeInfo
+    {
+        public int PreviousNodeIndex;
+        public float TotalDistance;
+
+        public void Clear()
+        {
+            PreviousNodeIndex = -1;
+            TotalDistance = 0f;
+        }
+    }
+
+    public Node NextNode => path.Pop();
     public bool SearchFinished { get; private set; }
-    public Node NextNode { get { return path.Pop(); } }
 
     private int stepIterations;
     private int iterations;
-    private int[] previousNodes;
+    private NodeInfo[] previousNodes;
     private Node startNode;
     private Node goalNode;
     private List<Node> reachable;
@@ -37,11 +49,11 @@ public class WorldPathfinder
         explored = new List<Node>();
         path = new Stack<Node>();
 
-        previousNodes = new int[allNodes.Count];
+        previousNodes = new NodeInfo[allNodes.Count];
 
         for (int i = 0; i < allNodes.Count; i++)
         {
-            previousNodes[i] = -1;
+            previousNodes[i].Clear();
         }
 
         startNode = FindTerrainClosestTo(startAt);
@@ -85,8 +97,8 @@ public class WorldPathfinder
                 {
                     path.Push(chosenNode);
                     
-                    chosenNode = previousNodes[chosenNode.Index] >= 0
-                        ? allNodes[previousNodes[chosenNode.Index]]
+                    chosenNode = previousNodes[chosenNode.Index].PreviousNodeIndex >= 0
+                        ? allNodes[previousNodes[chosenNode.Index].PreviousNodeIndex]
                         : null;
                 }
 
@@ -109,21 +121,22 @@ public class WorldPathfinder
     {
         if(!explored.Contains(adjacent) && !reachable.Contains(adjacent)) //can you go there or has it already been checked?
         {
-            previousNodes[adjacent.Index] = current.Index;
+            previousNodes[adjacent.Index].PreviousNodeIndex = current.Index;
+            previousNodes[adjacent.Index].TotalDistance = previousNodes[current.Index].TotalDistance + Vector2.Distance(current.CellBounds.center, adjacent.CellBounds.center);
             reachable.Add(adjacent);
         }
     }
     
     private Node ChooseNode()
     {
-        //Node chosen = reachable
-        //    .Select(node => new KeyValuePair<Node, float>(node, Mathf.Abs(Vector2.Distance(node.CellBounds.center, goalNode.CellBounds.center))))
-        //    .OrderBy(pair => pair.Value)
-        //    .First().Key;
+        Node chosen = reachable
+            .Select(node => new KeyValuePair<Node, float>(node, previousNodes[node.Index].TotalDistance))//Mathf.Abs(Vector2.Distance(node.CellBounds.center, goalNode.CellBounds.center))))
+            .OrderBy(pair => pair.Value)
+            .First().Key;
 
-        //return chosen;
+        return chosen;
 
-        return reachable[0];
+        //return reachable[0];
     }
     
     public Node FindTerrainClosestTo(Vector3 point)
