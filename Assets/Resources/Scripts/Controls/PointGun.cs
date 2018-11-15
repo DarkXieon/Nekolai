@@ -11,11 +11,7 @@ public class PointGun : MonoBehaviour
 
     [SerializeField] //this allows it to be seen in the inspector
     private Transform _pointWith; //this is the point of the gun that the bullets exit from
-
-    private Transform _gunPointerTransform; //the transform of this object this.transform adds more overhead that you'd think. It's not a straight up property
-
-    private Transform _rootTransform;
-
+    
     private float _x0; //the spot on the x axis where y = 0 and _x0 and the current x location are equadistant to _rotateAround
     private float _yOffset;
     private bool _fliped; //indicates if the player is facing backwards
@@ -23,10 +19,6 @@ public class PointGun : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        this._gunPointerTransform = this.transform; //just for efficiancy
-
-        this._rootTransform = this._gunPointerTransform.root;
-
         //this gets the x value where _rotateAround is the origin and _x0 is a x value 
         //where (_x0, 0) and it's current location are equidistant to the origin
         this._x0 = _pointWith.position.x - _rotateAround.position.x;//this.GetDistanceFromOrigin(_pointWith.position - _rotateAround.position);
@@ -34,7 +26,7 @@ public class PointGun : MonoBehaviour
 
         this._fliped = false; //check the rotation of the gun, this should return false
 
-        Debug.Assert(this._gunPointerTransform.rotation.eulerAngles == Quaternion.identity.eulerAngles, "The gun does not have an initial rotation of 0. Please set the gun's initial rotation to zero.");
+        Debug.Assert(this.transform.rotation.eulerAngles == Quaternion.identity.eulerAngles, "The gun does not have an initial rotation of 0. Please set the gun's initial rotation to zero.");
     }
 
     // Update is called once per frame
@@ -52,29 +44,10 @@ public class PointGun : MonoBehaviour
         var endPosition = this.GetTranslatedPosition(angle);
 
         var actualAngle = this.GetActualRotationAngle(angle);
-        
-        this._rotateAround.localRotation = _fliped 
+
+        this._rotateAround.localRotation = _fliped
             ? Quaternion.Euler(0, 0, -actualAngle)
             : Quaternion.Euler(0, 0, actualAngle);
-
-        //this._gunPointerTransform.position = endPosition - this._pointWith.localPosition;
-
-        //var rotation = Quaternion.identity;
-
-        //rotation *= Quaternion.Euler(new Vector3(180, 0, 0));
-        /*
-        var angle = this.GetRotationAngleRadian(cursorCoordinates);
-
-        var endPosition = this.GetTranslatedPosition(angle);
-
-        var actualAngle = this.GetActualRotationAngle(angle);
-
-        this._gunPointerTransform.rotation = _fliped
-            ? Quaternion.Euler(new Vector3(180, 0, 180 - angle * Mathf.Rad2Deg))
-            : Quaternion.Euler(new Vector3(0, 0, angle * Mathf.Rad2Deg));
-        
-        this.transform.position = endPosition;
-        */
     }
     
     /*
@@ -144,7 +117,7 @@ public class PointGun : MonoBehaviour
     //This determines if the player and gun should face the other direction
     private bool ShouldFlip(Vector3 cursorCoordinates)
     {
-        bool cursorOnRight = cursorCoordinates.x >= this._rootTransform.position.x;
+        bool cursorOnRight = cursorCoordinates.x >= this.transform.root.position.x;
         bool shouldFlip = (cursorOnRight && _fliped) || (!cursorOnRight && !_fliped);
 
         return shouldFlip;
@@ -161,15 +134,15 @@ public class PointGun : MonoBehaviour
     }
     private void Flip()
     {
-        //var rootScale = this._rootTransform.localScale;
+        //var rootScale = this.this.transform.root.localScale;
 
-        this._rootTransform.localRotation *= Quaternion.Euler(0, 180, 0);
+        this.transform.root.localRotation *= Quaternion.Euler(0, 180, 0);
 
         //rootScale.x *= -1;
         this._x0 *= -1;
         this._fliped = !this._fliped;
 
-        //this._rootTransform.localScale = rootScale;
+        //this.this.transform.root.localScale = rootScale;
 
 
         /*

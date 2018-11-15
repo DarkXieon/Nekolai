@@ -6,13 +6,15 @@ public class PlayerJump : EntityJump
     // Update is called once per frame
     protected override void Update()
     {
-        CanJumpTwice = false;
+        //CanJumpTwice = false;
+
         /*
         if (Input.GetKeyDown(KeyCode.J))
         {
             CanJumpTwice = !CanJumpTwice;
         }
         */
+
         base.Update();
     }
     

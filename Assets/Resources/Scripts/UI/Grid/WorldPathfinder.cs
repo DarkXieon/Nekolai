@@ -130,7 +130,7 @@ public class WorldPathfinder
     private Node ChooseNode()
     {
         Node chosen = reachable
-            .Select(node => new KeyValuePair<Node, float>(node, previousNodes[node.Index].TotalDistance))//Mathf.Abs(Vector2.Distance(node.CellBounds.center, goalNode.CellBounds.center))))
+            .Select(node => new KeyValuePair<Node, float>(node, Mathf.Abs(Vector2.Distance(node.CellBounds.center, goalNode.CellBounds.center)))) //previousNodes[node.Index].TotalDistance))
             .OrderBy(pair => pair.Value)
             .First().Key;
 
