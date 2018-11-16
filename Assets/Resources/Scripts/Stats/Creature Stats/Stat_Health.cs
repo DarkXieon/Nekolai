@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class Stat_Health : Stat
@@ -10,7 +8,7 @@ public class Stat_Health : Stat
     public static GameObject prefabCanvas; // the prefab of the health canvas
 
 	// Use this for initialization
-	private void Start ()
+	private void Start()
     {
         base.Start();
 
